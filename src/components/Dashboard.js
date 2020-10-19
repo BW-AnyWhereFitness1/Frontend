@@ -3,7 +3,7 @@ import { getClasses } from '../actions/index';
 import { connect } from 'react-redux';
 
 
-class Dashboard extends Component{
+class Dashboard extends Component {
     constructor(props){
         super(props);
     }
