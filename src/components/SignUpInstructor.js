@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from 'react'
-import axios from 'axios'
 import * as yup from "yup"
 import schema from '../formValidation/signUpSchema'
+import {useDispatch, useSelector } from 'react-redux';
 
+import { userActions } from '../_actions';
 const instructorInitialvalues = {
     name: '',
     username: '',
@@ -25,7 +26,8 @@ export default function SignupInstructor() {
      const [formErrors, setFormErrors] = useState(initialErrors)
 
      const [disabled, setDisabled] = useState(true)
-     
+     const registering = useSelector(state => state.registrationInstructor.registering);
+     const dispatch = useDispatch();
      const inputChange = (name, value) => {
         yup.reach(schema,name)
         .validate(value)
@@ -74,10 +76,7 @@ export default function SignupInstructor() {
 
 
      const sendSignUp = newinstructor => {
-         axios.post('https://reqres.in/api/users', newinstructor)
-         .then(res => console.log(res.data))
-         .catch(e => console.log(e))
-         setinstructorForm(instructorInitialvalues)
+        dispatch(userActions.registerInstructor(newinstructor));
      }
 
     return (
@@ -118,6 +117,7 @@ export default function SignupInstructor() {
                onChange={onChange}
                placeholder="Password"/>
                <button disabled={disabled}>Confirm</button>
+               {registering && <p>Signing Up...</p>}
            </form>
         </div>
     )
