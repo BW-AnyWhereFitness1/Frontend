@@ -1,7 +1,10 @@
 import React, {useState, useEffect} from 'react'
-import axios from 'axios'
 import * as yup from "yup"
 import schema from '../formValidation/LogInSchema'
+import {useDispatch, useSelector } from 'react-redux';
+
+import { userActions } from '../_actions';
+
 
 const loginInitialvalues = {
     username: '',
@@ -14,14 +17,17 @@ const initialErrors = {
 }
 
 
-export default function Login() {
+function Login() {
 
      const [loginForm, setloginForm] = useState(loginInitialvalues)
 
      const [formErrors, setFormErrors] = useState(initialErrors)
 
      const [disabled, setDisabled] = useState(true)
-     
+
+     const loggingIn = useSelector(state => state.authentication.loggingIn);
+     const dispatch = useDispatch();
+
      const inputChange = (name, value) => {
         yup.reach(schema,name)
         .validate(value)
@@ -68,10 +74,10 @@ export default function Login() {
 
 
      const sendSignUp = newlogin => {
-         axios.post('https://reqres.in/api/users', newlogin)
-         .then(res => console.log(res.data))
-         .catch(e => console.log(e))
-         setloginForm(loginInitialvalues)
+         console.log(newlogin);
+
+         dispatch(userActions.login(newlogin));
+
      }
 
     return (
@@ -96,9 +102,12 @@ export default function Login() {
                value={loginForm.password}
                onChange={onChange}
                placeholder="Password"/>
+               {loggingIn && <p>Logging In...</p>}
                <button disabled={disabled}>Confirm</button>
            </form>
+        
         </div>
     )
 }
 
+export { Login };
