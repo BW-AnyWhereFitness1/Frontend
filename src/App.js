@@ -11,20 +11,27 @@ import Dashboard from './components/Dashboard';
 
 
 const StyledHeader = styled.header`
-  
+  display:flex;
+  justify-content:space-between;
+
+  text-decoration: none;  
   background-color: white;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   margin-bottom: 2rem;
-  margin-top: 1rem;
-  width: 155vh;
+  width: 100%;
   nav a {
     text-decoration: none;
     color: black;
     margin-left: 1rem;
   }
+
   #company-name {
     margin-left: 1rem;
+    color: black;
+    font-family: 'MuseoModerno', cursive;
+    font-size: 2rem;
   }
+
   nav {
     display: flex;
     justify-content: flex-end;
@@ -34,19 +41,26 @@ const StyledHeader = styled.header`
 
 `
 
+
+
+
+
+
 class App extends Component {
   render() {
     return (
       <Router>
         <div className="App">
           <StyledHeader>
+            <Link to='/' style={{ textDecoration: 'none' }}>
+            <h1 id="company-name">Anywhere Fitness</h1>
+            </Link>
             <nav>
               <Link to='/login'> Login </Link>
               <Link to='/signup'> Sign up </Link>
             </nav>
-            <h1 id="company-name">Anywhere Fitness</h1>
-            
           </StyledHeader>
+
           <Route path='/login' component={Login} />
           <Route path='/signup' component={Signup} />
           <PrivateRoute exact path='/dashboard' component={Dashboard} />

@@ -8,27 +8,38 @@ import styled from 'styled-components';
 // STYLING
 const FormContainerDiv = styled.div`
     display: flex;
-    justify-content: center;
+    justify-content:space-between;
     height: 55vh;
     width: 85vh;
     border-radius: 10px;
     background-color: white;
     -webkit-box-shadow: 0px 6px 15px 0px rgba(0,0,0,0.45); 
-    box-shadow: 0px 6px 15px 0px rgba(0,0,0,0.45);
+    box-shadow: 0 2px 1px rgba(0,0,0,0.09), 
+              0 4px 2px rgba(0,0,0,0.09), 
+              0 8px 4px rgba(0,0,0,0.09), 
+              0 16px 8px rgba(0,0,0,0.09),
+              0 32px 16px rgba(0,0,0,0.09);
 
     button {
         background-color: #40e0d0;
         color: white;
     }
+    text-align:center;
+    input {
+        margin: 1rem 0;
+    }
 `
 
 const PicLeftDiv = styled.div`
-    /* background-image: url(../Assets/jared-rice-8w7b4SdhOgw-unsplash.jpg); */
-    /* background-color: #EEEEEE; */
-    width: 35%;
+    img {
+        width:100%;
+    }
+    width: 50%;
 `
 
 const FormFieldsRightDiv = styled.div`
+    background-color: grey;
+    width:45%;
     display: flex;
     flex-direction: column;
     /* align-items: center; */
@@ -128,16 +139,16 @@ export default function Signup() {
     return (
         <FormContainerDiv>
             <PicLeftDiv>
-                <p>PICTURE GOES HERE</p>
+                <img src='Assets/jared-rice-8w7b4SdhOgw-unsplash.jpg' />
             </PicLeftDiv>
             <FormFieldsRightDiv>
                     <div>
-                        <h1>Sign Up</h1>
                         <div>{formErrors.name}</div>
                         <div>{formErrors.username}</div>
                         <div>{formErrors.password}</div>
                         <div>{formErrors.email}</div>
                     </div>
+                <h1>Sign Up</h1>
                 <form onSubmit={onSubmit}>
                     <input 
                     type="text" 
