@@ -32,7 +32,7 @@ const StyledHeader = styled.header`
     margin-left: 1rem;
     color: black;
     font-family: 'MuseoModerno', cursive;
-    font-size: 2rem;
+    font-size: 3rem;
   }
 
   nav {

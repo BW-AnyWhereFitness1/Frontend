@@ -155,7 +155,7 @@ export default function Signup() {
                         <div>{formErrors.password}</div>
                         <div>{formErrors.email}</div>
                     </div>
-                <h1>Sign Up</h1>
+                <h2>Sign Up</h2>
                 <form onSubmit={onSubmit}>
                     <input 
                     type="text" 
