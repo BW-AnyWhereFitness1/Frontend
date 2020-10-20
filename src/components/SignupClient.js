@@ -58,7 +58,8 @@ export default function Signup() {
              name: clientForm.name.trim(),
              username: clientForm.username.trim(),
              email: clientForm.email.trim(),
-             password: clientForm.password.trim()
+             password: clientForm.password.trim(),
+             role: 'client'
          }
          sendSignUp(newclient)
      }
