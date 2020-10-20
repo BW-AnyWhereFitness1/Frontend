@@ -4,6 +4,34 @@ import * as yup from "yup";
 import schema from '../formValidation/signUpSchema';
 import styled from 'styled-components';
 
+
+// STYLING
+const FormContainerDiv = styled.div`
+    display: flex;
+    justify-content: center;
+    
+    max-width: 95%;
+    background-color: white;
+
+    button {
+        background-color: #40e0d0;
+        color: white;
+    }
+`
+
+const PicLeftDiv = styled.div`
+    /* background-image: url(../Assets/jared-rice-8w7b4SdhOgw-unsplash.jpg); */
+    /* background-color: grey; */
+`
+
+const FormFieldsRightDiv = styled.div`
+    display: flex;
+    flex-direction: column;
+`
+
+// STYLING END
+
+
 const clientInitialvalues = {
     name: '',
     username: '',
@@ -82,7 +110,11 @@ export default function Signup() {
      }
 
     return (
-        <div>
+        <FormContainerDiv>
+            <PicLeftDiv>
+                <p>asdfasdfsf</p>
+            </PicLeftDiv>
+            <FormFieldsRightDiv>
            <h1>Sign Up</h1>
            <div>
                 <div>{formErrors.name}</div>
@@ -120,7 +152,8 @@ export default function Signup() {
                placeholder="Password"/>
                <button disabled={disabled}>Confirm</button>
            </form>
-        </div>
+           </FormFieldsRightDiv>
+        </FormContainerDiv>
     )
 }
 
