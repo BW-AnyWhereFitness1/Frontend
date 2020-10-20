@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Login from './components/Login';
+import Login from './components/LogIn';
 import Signup from './components/SignupClient';
 
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
