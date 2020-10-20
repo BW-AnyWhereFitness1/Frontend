@@ -15,9 +15,21 @@ const StyledHeader = styled.header`
   background-color: white;
   border-radius: 10px;
   margin-bottom: 2rem;
+  margin-top: 1rem;
+  width: 155vh;
   nav a {
     text-decoration: none;
     color: black;
+    margin-left: 1rem;
+  }
+  #company-name {
+    margin-left: 1rem;
+  }
+  nav {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1rem;
+    margin-right: 2rem;
   }
 
 `
@@ -28,11 +40,11 @@ class App extends Component {
       <Router>
         <div className="App">
           <StyledHeader>
-            <h1 id="company-name">Anywhere Fitness</h1>
             <nav>
               <Link to='/login'> Login </Link>
               <Link to='/signup'> Sign up </Link>
             </nav>
+            <h1 id="company-name">Anywhere Fitness</h1>
             
           </StyledHeader>
           <Route path='/login' component={Login} />
