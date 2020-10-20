@@ -8,10 +8,10 @@ import styled from 'styled-components';
 // STYLING
 const FormContainerDiv = styled.div`
     display: flex;
-    /* justify-content: center; */
+    justify-content: center;
     height:85vh;
     width: 135vh;
-    border-radius: 1%;
+    border-radius: 10px;
     background-color: white;
     -webkit-box-shadow: 0px 6px 15px 0px rgba(0,0,0,0.45); 
     box-shadow: 0px 6px 15px 0px rgba(0,0,0,0.45);
@@ -24,7 +24,7 @@ const FormContainerDiv = styled.div`
 
 const PicLeftDiv = styled.div`
     /* background-image: url(../Assets/jared-rice-8w7b4SdhOgw-unsplash.jpg); */
-    background-color: #EEEEEE;
+    /* background-color: #EEEEEE; */
     width: 35%;
 `
 
