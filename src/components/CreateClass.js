@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import * as yup from "yup"
 import schema from '../formValidation/createClassSchema'
+import styled from 'styled-components'
 
 const classInitialvalues = {
     classname: '',
@@ -24,7 +25,17 @@ const classInitialvalues = {
     thursday:false,
     friday:false,
     saturday:false  
-}   
+}  
+
+const checkboxInitial = {
+    sunday: false,
+    monday: false,
+    tuesday:false,
+    wednesday:false,
+    thursday:false,
+    friday:false,
+    saturday:false  
+}
 
 const initialErrors = {
     classname: '',
@@ -42,7 +53,69 @@ const initialErrors = {
     classlevel:''
 }
 
+const FormContainers = styled.form`
+    display:flex;
+    flex-direction:column;
+    input {
+        width:400px;
+        padding: 1rem;
+        border-radius:5px;
+        border: 1px lightgrey solid;
+    }
+    input[type='checkbox'] {
+        display:none;
+    }
+    .label {
+        display:flex;
+        margin: 1.5rem .9rem;
+        flex-direction:column;
+    }
+    textarea {
+        width:400px;
+        padding: 1rem;
+        border-radius:5px;
+        border: 1px lightgrey solid;
+    }
+    select {
+        width:80px;
+        border-radius:.4rem;
+        border: 1px lightgray solid;
+        padding:.6rem 0;
+    }
+    .checkbox {
+        display:flex;
+        label {
+            background:lightgray;
+            border-radius:10px;
+            margin-left:2rem;
+            padding:.5rem 1.5rem;
+            margin:3rem 0;
+            margin-right: 3rem;
+        }
+        .checkedbox {
+                background: orange;
+            }
+    }
 
+    .classtime {
+        margin: .9rem;
+        input {
+            width:50px;
+            margin-left:1rem;
+        }
+        .classtimeto {
+            margin:0 1rem;
+        }
+    }
+    padding: 2rem 7rem;
+    font-size: 2.5rem;
+    button {
+        width:400px;
+        padding:1rem;
+        font-weight:bold;
+        color:darkgray;
+    }
+`
 
 export default function CreateClass() {
 
@@ -51,6 +124,8 @@ export default function CreateClass() {
      const [formErrors, setFormErrors] = useState(initialErrors)
 
      const [disabled, setDisabled] = useState(true)
+
+     const [checkbox, setCheckbox] = useState(checkboxInitial)
      
      const inputChange = (name, value) => {
         yup.reach(schema,name)
@@ -77,6 +152,11 @@ export default function CreateClass() {
         const {name, value, type, checked} = e.target
         const valueToUse = type === 'checkbox' ? checked : value
         inputChange(name,valueToUse)
+     }
+
+     const checkboxClick = e => {
+        const {name, checked} = e.target
+        setCheckbox({...checkbox, [name]:checked})
      }
 
      const formSubmit = () => {
@@ -125,9 +205,9 @@ export default function CreateClass() {
            <div>
                 {formErrors.classname}
             </div>
-           <form onSubmit={onSubmit}>
+           <FormContainers onSubmit={onSubmit}>
 
-                <label>
+                <label className='label'>
                     Class Name
                     <input 
                     type="text" 
@@ -136,16 +216,17 @@ export default function CreateClass() {
                     onChange={onChange}
                     />
                 </label>
-                <label>
+                <label className='label'>
                     Class Description
-                    <input 
+                    <textarea 
+                    rows="4" 
                     type="text" 
                     name="classdescription" 
                     value={classForm.classdescription}
                     onChange={onChange}
                     />
                 </label>
-                <label>
+                <label className='label'>
                     Class Cost
                     <input 
                     type="text" 
@@ -154,16 +235,17 @@ export default function CreateClass() {
                     onChange={onChange}
                     />
                 </label>
-                <label>
+                <label className='label'>
                     Class Equipment Requirements
-                    <input 
+                    <textarea 
+                    rows="4"  
                     type="text" 
                     name="classequipment" 
                     value={classForm.classequipment}
                     onChange={onChange}
                     />
                 </label>
-                <label>
+                <label className='label'>
                     Class Address
                     <input 
                     type="text" 
@@ -172,7 +254,7 @@ export default function CreateClass() {
                     onChange={onChange}
                     />
                 </label>
-                <label>
+                <label className='label'>
                     Class Type
                     <select 
                     onChange={onChange}
@@ -184,7 +266,7 @@ export default function CreateClass() {
                         <option value="weights">Weights</option>
                     </select>
                 </label>
-                <label>
+                <label className='label'>
                     Class Size
                     <input 
                     type="text" 
@@ -193,7 +275,7 @@ export default function CreateClass() {
                     onChange={onChange}
                     />
                 </label>
-                <label>
+                <label className='label'>
                     Class Length
                     <input 
                     type="text" 
@@ -202,7 +284,7 @@ export default function CreateClass() {
                     onChange={onChange}
                     />
                 </label>
-                <label>
+                <label className='label'>
                     Class Level
                     <select 
                     onChange={onChange}
@@ -214,7 +296,7 @@ export default function CreateClass() {
                         <option value="hard">Hard</option>
                     </select>
                 </label>
-                <label>
+                <label className='label'>
                     When To Arrive
                     <input 
                     type="text" 
@@ -223,16 +305,17 @@ export default function CreateClass() {
                     onChange={onChange}
                     />
                 </label>
-                <label>
+                <label className='label'>
                     What You Need To Know
-                    <input 
+                    <textarea 
+                    rows="4" 
                     type="text" 
                     name="whattoknow" 
                     value={classForm.whattoknow}
                     onChange={onChange}
                     />
                 </label>
-                <label>
+                <label className='classtime'>
                     Class Time
                     <input 
                     type="text" 
@@ -240,7 +323,7 @@ export default function CreateClass() {
                     value={classForm.start}
                     onChange={onChange}
                     />
-                    To
+                    <span className='classtimeto'>To</span>
                     <input 
                     type="text" 
                     name="finish" 
@@ -248,7 +331,10 @@ export default function CreateClass() {
                     onChange={onChange}
                     />
                 </label>
-                <label>
+                <div className='checkbox'>
+                <label 
+                className={`box ${checkbox.sunday ? 'checkedbox' : ''}`} 
+                onClick={checkboxClick}>
                 Sunday
                 <input
                     type="checkbox"
@@ -257,7 +343,10 @@ export default function CreateClass() {
                     onChange={onChange}
                 />
                 </label>
-                <label>
+                <label
+                className={`box ${checkbox.monday ? 'checkedbox' : ''}`} 
+                onClick={checkboxClick}
+                >
                 Monday
                 <input
                     type="checkbox"
@@ -266,7 +355,10 @@ export default function CreateClass() {
                     onChange={onChange}
                 />
                 </label>
-                <label>
+                <label
+                className={`box ${checkbox.tuesday ? 'checkedbox' : ''}`} 
+                onClick={checkboxClick}
+                >
                 Tuesday
                 <input
                     type="checkbox"
@@ -275,7 +367,10 @@ export default function CreateClass() {
                     onChange={onChange}
                 />
                 </label>
-                <label>
+                <label
+                className={`box ${checkbox.wednesday ? 'checkedbox' : ''}`} 
+                onClick={checkboxClick}
+                >
                 Wednesday
                 <input
                     type="checkbox"
@@ -284,7 +379,10 @@ export default function CreateClass() {
                     onChange={onChange}
                 />
                 </label>
-                <label>
+                <label
+                className={`box ${checkbox.thursday ? 'checkedbox' : ''}`} 
+                onClick={checkboxClick}
+                >
                 Thursday
                 <input
                     type="checkbox"
@@ -293,7 +391,10 @@ export default function CreateClass() {
                     onChange={onChange}
                 />
                 </label>
-                <label>
+                <label
+                className={`box ${checkbox.friday ? 'checkedbox' : ''}`} 
+                onClick={checkboxClick}
+                >
                 Friday
                 <input
                     type="checkbox"
@@ -302,7 +403,10 @@ export default function CreateClass() {
                     onChange={onChange}
                 />
                 </label>
-                <label>
+                <label
+                className={`box ${checkbox.saturday ? 'checkedbox' : ''}`} 
+                onClick={checkboxClick}
+                >
                 Saturday
                 <input
                     type="checkbox"
@@ -312,8 +416,9 @@ export default function CreateClass() {
                     onChange={onChange}
                 />
                 </label>
+                </div>
                 <button disabled={disabled}>Confirm</button>
-           </form>
+           </FormContainers>
         </div>
     )
 }
