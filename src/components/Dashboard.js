@@ -1,31 +1,21 @@
-import React, { Component } from 'react';
-import { getClasses } from '../actions/index';
-import { connect } from 'react-redux';
+import React from 'react'
+import { useDispatch } from 'react-redux';
 
+import { userActions } from '../_actions';
+import { Redirect } from 'react-router-dom';
 
-class Dashboard extends Component {
-    constructor(props){
-        super(props);
-    }
-
-    componentDidMount(){
-        this.props.getFriends();
-    }
-
-    render(){
-        return(
-            <div className="dashboardContainer">
-               <p>Logged in</p>
-            </div>
-        )
-    }
+export default function Dashboard() {
+     const dispatch = useDispatch();
+     function startLogOut() {
+        console.log('called logout')
+        dispatch(userActions.logout());
+     }
+    return (
+        <div>
+           <h1>Logged In</h1>
+           <button onClick={() => startLogOut()}>Signout</button>
+           {(localStorage.getItem("token") === null) && <Redirect to="/login" />}
+        </div>
+        
+    )
 }
-
-const mapStateToProps = state =>{
-    return{
-        classes: state.classes,
-        fetchingClasses: state.fetchingClasses
-    }
-}
-
-export default connect(mapStateToProps, { getClasses })(Dashboard);
