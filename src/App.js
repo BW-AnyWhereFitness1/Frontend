@@ -11,8 +11,11 @@ import Dashboard from './components/Dashboard';
 
 
 const StyledHeader = styled.header`
-  display:flex;
+  
+  /* display:flex;
+  flex-direction: column;
   justify-content:space-between;
+  justify-content: center; */
 
   text-decoration: none;  
   background-color: white;
@@ -50,7 +53,7 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div className="App">
+        <div className="App"> 
           <StyledHeader>
             <Link to='/' style={{ textDecoration: 'none' }}>
             <h1 id="company-name">Anywhere Fitness</h1>

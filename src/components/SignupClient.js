@@ -8,9 +8,12 @@ import styled from 'styled-components';
 // STYLING
 const FormContainerDiv = styled.div`
     display: flex;
-    justify-content:space-between;
-    height: 55vh;
-    width: 85vh;
+    flex-direction: space-between;
+    background-color: black;
+    /* align-items: flex-end; */
+    /* max-width: 50%; */
+    width: 45%;
+    padding: 0rem;
     border-radius: 10px;
     background-color: white;
     -webkit-box-shadow: 0px 6px 15px 0px rgba(0,0,0,0.45); 
@@ -31,27 +34,31 @@ const FormContainerDiv = styled.div`
 `
 
 const PicLeftDiv = styled.div`
+    padding-top: 2rem;
     img {
-        width:100%;
-    }
-    width: 50%;
+         max-width: 90%;
+         border-radius: 10px;
+         } 
 `
 
 const FormFieldsRightDiv = styled.div`
-    background-color: grey;
-    width:45%;
-    display: flex;
-    flex-direction: column;
+    /* background-color: black; */
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    padding-right: 2rem;
+    max-width:75%;
+    height: 100%;
+    /* display: flex;
+    flex-direction: column; */
+    /* align-items: flex-start; */
     /* align-items: center; */
-    justify-content: center;
-    align-content: center;
+    /* justify-content: center;
+    /* align-content: center; */ */
 
     form {
         display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
-        align-content: center;
     }
 
 `
