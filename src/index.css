@@ -1,14 +1,34 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=MuseoModerno&display=swap');
 body {
   display: flex;
   justify-content: center;
   background-color: #fb4250;
-  margin: 5rem;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  margin: 3rem;
+  font-family: 'Comfortaa', cursive;
+  font-size: 1rem;
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+    sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+#company-name {
+  font-family: 'MuseoModerno', cursive;
+  font-size: 2rem;
+}
+
+nav {
+  margin-bottom: 2rem;
+}
+
+nav a{
+  text-decoration: none;
+  color: rgb(31, 30, 30);
+}
+
+
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',

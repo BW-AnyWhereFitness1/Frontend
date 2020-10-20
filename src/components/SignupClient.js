@@ -8,10 +8,13 @@ import styled from 'styled-components';
 // STYLING
 const FormContainerDiv = styled.div`
     display: flex;
-    justify-content: center;
-    
-    max-width: 95%;
+    /* justify-content: center; */
+    height:85vh;
+    width: 135vh;
+    border-radius: 1%;
     background-color: white;
+    -webkit-box-shadow: 0px 6px 15px 0px rgba(0,0,0,0.45); 
+    box-shadow: 0px 6px 15px 0px rgba(0,0,0,0.45);
 
     button {
         background-color: #40e0d0;
@@ -21,12 +24,25 @@ const FormContainerDiv = styled.div`
 
 const PicLeftDiv = styled.div`
     /* background-image: url(../Assets/jared-rice-8w7b4SdhOgw-unsplash.jpg); */
-    /* background-color: grey; */
+    background-color: #EEEEEE;
+    width: 35%;
 `
 
 const FormFieldsRightDiv = styled.div`
     display: flex;
     flex-direction: column;
+    /* align-items: center; */
+    justify-content: center;
+    align-content: center;
+
+    form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+    }
+
 `
 
 // STYLING END
@@ -112,46 +128,46 @@ export default function Signup() {
     return (
         <FormContainerDiv>
             <PicLeftDiv>
-                <p>asdfasdfsf</p>
+                <p>PICTURE GOES HERE</p>
             </PicLeftDiv>
             <FormFieldsRightDiv>
-           <h1>Sign Up</h1>
-           <div>
-                <div>{formErrors.name}</div>
-                <div>{formErrors.username}</div>
-                <div>{formErrors.password}</div>
-                <div>{formErrors.email}</div>
-            </div>
-           <form onSubmit={onSubmit}>
-               <input 
-               type="text" 
-               name="name" 
-               value={clientForm.name}
-               onChange={onChange}
-               placeholder="Name"/>
+                    <div>
+                        <h1>Sign Up</h1>
+                        <div>{formErrors.name}</div>
+                        <div>{formErrors.username}</div>
+                        <div>{formErrors.password}</div>
+                        <div>{formErrors.email}</div>
+                    </div>
+                <form onSubmit={onSubmit}>
+                    <input 
+                    type="text" 
+                    name="name" 
+                    value={clientForm.name}
+                    onChange={onChange}
+                    placeholder="Name"/>
 
-               <input 
-               type="text" 
-               name="username" 
-               value={clientForm.username}
-               onChange={onChange}
-               placeholder="Username"/>
+                    <input 
+                    type="text" 
+                    name="username" 
+                    value={clientForm.username}
+                    onChange={onChange}
+                    placeholder="Username"/>
 
-               <input 
-               type="email" 
-               name="email" 
-               value={clientForm.email}
-               onChange={onChange}
-               placeholder="Email"/>
+                    <input 
+                    type="email" 
+                    name="email" 
+                    value={clientForm.email}
+                    onChange={onChange}
+                    placeholder="Email"/>
 
-               <input 
-               type="password" 
-               name="password" 
-               value={clientForm.password}
-               onChange={onChange}
-               placeholder="Password"/>
-               <button disabled={disabled}>Confirm</button>
-           </form>
+                    <input 
+                    type="password" 
+                    name="password" 
+                    value={clientForm.password}
+                    onChange={onChange}
+                    placeholder="Password"/>
+                    <button disabled={disabled}>Confirm</button>
+                </form>
            </FormFieldsRightDiv>
         </FormContainerDiv>
     )

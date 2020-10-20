@@ -12,8 +12,12 @@ class App extends Component {
       <Router>
         <div className="App">
           <header>
-            <Link to='/login'> Login </Link>
-            <Link to='/signup'> Sign up </Link>
+            <h1 id="company-name">Anywhere Fitness</h1>
+            <nav>
+              <Link to='/login'> Login </Link>
+              <Link to='/signup'> Sign up </Link>
+            </nav>
+            
           </header>
           <Route path='/login' component={Login} />
           <Route path='/signup' component={Signup} />
