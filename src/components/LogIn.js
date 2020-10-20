@@ -1,7 +1,45 @@
-import React, {useState, useEffect} from 'react'
-import axios from 'axios'
-import * as yup from "yup"
-import schema from '../formValidation/LogInSchema'
+import React, {useState, useEffect} from 'react';
+import axios from 'axios';
+import * as yup from "yup";
+import schema from '../formValidation/LogInSchema';
+import styled from 'styled-components';
+
+
+
+const FormContainerDiv = styled.div`
+    background-image: url("Assets/bruce-mars-ZXq7xoo98b0-unsplash.jpg");
+    background-size: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+    min-height: 45vh;
+    /* align-items: flex-end; */
+    /* max-width: 50%; */
+    width: 45%;
+    padding: 0rem;
+    border-radius: 10px;
+    background-color: white;
+    -webkit-box-shadow: 0px 6px 15px 0px rgba(0,0,0,0.45); 
+    box-shadow: 0 2px 1px rgba(0,0,0,0.09), 
+              0 4px 2px rgba(0,0,0,0.09), 
+              0 8px 4px rgba(0,0,0,0.09), 
+              0 16px 8px rgba(0,0,0,0.09),
+              0 32px 16px rgba(0,0,0,0.09);
+
+    button {
+        background-color: #40e0d0;
+        color: white;
+    }
+    text-align:center;
+    input {
+        margin: 1rem 0;
+    }
+`
+
+const H1Title = styled.h1`
+    color: white;
+`
+
 
 const loginInitialvalues = {
     username: '',
@@ -75,8 +113,8 @@ export default function Login() {
      }
 
     return (
-        <div>
-           <h1>Log In</h1>
+        <FormContainerDiv>
+           <H1Title>Log In</H1Title>
            <div>
                 <div>{formErrors.username}</div>
                 <div>{formErrors.password}</div>
@@ -98,7 +136,7 @@ export default function Login() {
                placeholder="Password"/>
                <button disabled={disabled}>Confirm</button>
            </form>
-        </div>
+        </FormContainerDiv>
     )
 }
 
