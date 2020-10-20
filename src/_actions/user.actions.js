@@ -42,7 +42,6 @@ function register(user) {
             .then(
                 user => { 
                     dispatch(success());
-                    
                 },
                 error => {
                     dispatch(failure(error.toString()));
@@ -62,8 +61,7 @@ function registerInstructor(user) {
         userService.registerInstructor(user)
             .then(
                 user => { 
-                    dispatch(success());
-                    
+                    dispatch(success()); 
                 },
                 error => {
                     dispatch(failure(error.toString()));

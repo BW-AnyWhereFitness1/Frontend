@@ -58,7 +58,8 @@ export default function SignupInstructor() {
              name: instructorForm.name.trim(),
              username: instructorForm.username.trim(),
              email: instructorForm.email.trim(),
-             password: instructorForm.password.trim()
+             password: instructorForm.password.trim(),
+             role: 'instructor'
          }
          sendSignUp(newinstructor)
      }

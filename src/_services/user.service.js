@@ -5,27 +5,25 @@ export const userService = {
     register,
     registerInstructor,
 };
-const apiUrl = 'http://localhost:8000'
-function login(username, password) {
+const apiUrl = 'https://anywherefit.herokuapp.com'
+function login(user) {
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password })
+        body: JSON.stringify(user)
     };
 
-    return fetch(`${apiUrl}/users/authenticate`, requestOptions)
+    return fetch(`${apiUrl}/api/auth/login`, requestOptions)
         .then(handleResponse)
-        .then(user => {
-            // store user details and jwt token in local storage to keep user logged in between page refreshes
-            localStorage.setItem('user', JSON.stringify(user));
-
-            return user;
+        .then(res => {
+            localStorage.setItem('token', JSON.stringify(res.token));
+            return res;
         });
 }
 
 function logout() {
     // remove user from local storage to log user out
-    localStorage.removeItem('user');
+    localStorage.removeItem('token');
 }
 
 
@@ -36,7 +34,13 @@ function register(user) {
         body: JSON.stringify(user)
     };
 
-    return fetch(`${apiUrl}/register`, requestOptions).then(handleResponse);
+    return fetch(`${apiUrl}/api/auth/register`, requestOptions)
+    .then(handleResponse)
+    .then(res => {
+        console.log('Register Called')
+        console.log(res.message)
+        return res;
+    });
 }
 
 function registerInstructor(user) {
@@ -46,7 +50,13 @@ function registerInstructor(user) {
         body: JSON.stringify(user)
     };
 
-    return fetch(`${apiUrl}/registerInstructor`, requestOptions).then(handleResponse);
+    return fetch(`${apiUrl}/api/auth/register`, requestOptions)
+    .then(handleResponse)
+    .then(res => {
+        console.log('Register Called')
+        console.log(res.message)
+        return res;
+    });
 }
 
 
