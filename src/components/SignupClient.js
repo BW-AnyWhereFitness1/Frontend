@@ -1,7 +1,8 @@
-import React, {useState, useEffect} from 'react'
-import axios from 'axios'
-import * as yup from "yup"
-import schema from '../formValidation/signUpSchema'
+import React, {useState, useEffect} from 'react';
+import axios from 'axios';
+import * as yup from "yup";
+import schema from '../formValidation/signUpSchema';
+import styled from 'styled-components';
 
 const clientInitialvalues = {
     name: '',
