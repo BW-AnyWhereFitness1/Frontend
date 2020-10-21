@@ -1,9 +1,10 @@
-
+import { authHeader } from '../_helpers';
 export const userService = {
     login,
     logout,
     register,
     registerInstructor,
+    getClassesClient
 };
 const apiUrl = 'https://anywherefit.herokuapp.com'
 function login(user) {
@@ -26,6 +27,13 @@ function logout() {
     localStorage.removeItem('token');
 }
 
+function getClassesClient() {
+    const requestOptions = {
+        method: 'GET',
+        headers: authHeader()
+    };
+    return fetch(`${apiUrl}/api/auth/users/classes`, requestOptions).then(handleResponse);
+}
 
 function register(user) {
     const requestOptions = {
@@ -74,7 +82,7 @@ function handleResponse(response) {
             const error = (data && data.message) || response.statusText;
             return Promise.reject(error);
         }
-
+        console.log(data);
         return data;
     });
 }
