@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import axios from 'axios';
 import * as yup from "yup";
 import schema from '../formValidation/signUpSchema';
 import styled from 'styled-components';
-
+import {useDispatch, useSelector } from 'react-redux';
+import { userActions } from '../_actions';
 
 // STYLING
 const FormContainerDiv = styled.div`
@@ -66,7 +66,7 @@ const FormFieldsRightDiv = styled.div`
 // STYLING END
 
 
-import { userActions } from '../_actions';
+
 const clientInitialvalues = {
     name: '',
     username: '',
@@ -146,7 +146,7 @@ export default function Signup() {
     return (
         <FormContainerDiv>
             <PicLeftDiv>
-                <img src='Assets/jared-rice-8w7b4SdhOgw-unsplash.jpg' />
+                <img alt = 'background' src='Assets/jared-rice-8w7b4SdhOgw-unsplash.jpg' />
             </PicLeftDiv>
             <FormFieldsRightDiv>
                     <div>
@@ -184,6 +184,8 @@ export default function Signup() {
                     value={clientForm.password}
                     onChange={onChange}
                     placeholder="Password"/>
+                                   {registering && <p>Signing Up...</p>}
+
                     <button disabled={disabled}>Confirm</button>
                 </form>
            </FormFieldsRightDiv>
