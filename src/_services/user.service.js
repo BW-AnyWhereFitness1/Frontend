@@ -4,7 +4,8 @@ export const userService = {
     logout,
     register,
     registerInstructor,
-    getClassesClient
+    getClassesClient,
+    checkInstructor
 };
 const apiUrl = 'https://anywherefit.herokuapp.com'
 function login(user) {
@@ -25,6 +26,14 @@ function login(user) {
 function logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('token');
+}
+
+function checkInstructor() {
+    const requestOptions = {
+        method: 'GET',
+        headers: authHeader()
+    };
+    return fetch(`${apiUrl}/api/auth/instructor/classes/`, requestOptions).then(handleResponse);
 }
 
 function getClassesClient() {

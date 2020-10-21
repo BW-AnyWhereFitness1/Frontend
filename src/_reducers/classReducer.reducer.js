@@ -18,3 +18,21 @@ export function classReducer(state = {}, action) {
             return state
     }
 }
+export function verifyInstructorReducer(state = {}, action) {
+    switch (action.type) {
+        case userConstants.CHECK_INSTRUCTOR_START:
+            return {
+                loading: true
+            };
+        case userConstants.CHECK_INSTRUCTOR_SUCCESS:
+            return {
+                response: action.res,
+            };
+        case userConstants.CHECK_INSTRUCTOR_FAULURE:
+            return {
+                error: action.error,
+            };
+        default:
+            return state
+    }
+}

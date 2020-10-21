@@ -9,7 +9,7 @@ import SignupInstructor from './components/SignUpInstructor';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import PrivateRoute from './components/PrivateRoute';
 import Dashboard from './components/Dashboard';
-
+import CreateClass from './components/CreateClass';
 
 
 const StyledHeader = styled.header`
@@ -70,6 +70,7 @@ class App extends Component {
           <Route path='/signup' component={Signup} />
           <Route path='/signupInstructor' component={SignupInstructor} />
           <PrivateRoute exact path='/dashboard' component={Dashboard} />
+          <PrivateRoute exact path='/createClass' component={CreateClass} />
         </div>
       </Router>
     );
