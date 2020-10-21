@@ -10,6 +10,8 @@ import { userActions } from '../_actions';
 const FormContainerDiv = styled.div`
   display: flex;
   flex-direction:column;
+  align-self: flex-end;
+  margin-right: 2rem;
   font-family: 'Comfortaa', cursive;
   max-width: 25%;
   border-radius: 10px;
@@ -43,12 +45,21 @@ const FormContainerDiv = styled.div`
       justify-content: center;
       font-size: .65rem;
   }
+  .error {
+      color: red;
+      font-size: .25rem;
+  }
+  
+  button {
+      color: white;
+  }
+
   .btn {
     flex: 1 1 auto;
     background-image: linear-gradient(to right, #fbc2eb 0%, #a6c1ee 51%, #fbc2eb 100%);
     margin: 10px;
-    border-radius: 45px;
-    padding: 10px;
+    border-radius: 5px;
+    padding: 3px;
     text-align: center;
     text-transform: uppercase;
     transition: 0.5s;
@@ -56,7 +67,6 @@ const FormContainerDiv = styled.div`
     color: white;
     /* text-shadow: 0px 0px 10px rgba(0,0,0,0.2);*/
     box-shadow: 0 0 20px #eee;
-    border-radius: 10px;
     .btn:hover {
         background-position: right center;
     }
@@ -64,7 +74,7 @@ const FormContainerDiv = styled.div`
   input {
       outline: 0;
       border-width: 0 0 2px;
-      border-color: aquamarine;
+      border-color: pink;
   }
   input:focus {
       border-color: pink;
@@ -196,10 +206,6 @@ function Login() {
                 <p id="welcome-text">Welcome</p>
                 <p id="sub-text">Anywhere Fitness</p>
                 </div>
-            <div>
-                    <div>{formErrors.username}</div>
-                    <div>{formErrors.password}</div>
-                </div>
                 <div class="input">
                     <form onSubmit={onSubmit}>
 
@@ -209,6 +215,7 @@ function Login() {
                         value={loginForm.username}
                         onChange={onChange}
                         placeholder="Username"/>
+                        {formErrors.username.length > 0 ? <p className="error">{formErrors.username}</p> : null}
 
                         <input 
                         type="password" 
@@ -216,11 +223,12 @@ function Login() {
                         value={loginForm.password}
                         onChange={onChange}
                         placeholder="Password"/>
+                        {formErrors.password.length > 0 ? <p className="error">{formErrors.password}</p> : null}
                         {loggingIn && <p>Logging In...</p>}
                         <button className="btn" disabled={disabled}>Confirm</button>
                     </form>
                     <div class="form-bottom">
-                    <p id="no-account">Don't have an account? </p><span id="sign-up">Sign Up</span>
+                    <span id="no-account">Don't have an account?</span><span id="sign-up">Sign Up</span>
             </div>
             </div>
            {localStorage.getItem('token') && <Redirect to="/dashboard" />}
