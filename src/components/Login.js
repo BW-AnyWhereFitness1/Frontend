@@ -203,22 +203,22 @@ function Login() {
             </div>
                 <div class="input">
                     <form onSubmit={onSubmit}>
-
+                       {formErrors.username.length > 0 ? <p className="error">{formErrors.username}</p> : null}
                         <input 
                         type="text" 
                         name="username" 
                         value={loginForm.username}
                         onChange={onChange}
                         placeholder="Username"/>
-                        {formErrors.username.length > 0 ? <p className="error">{formErrors.username}</p> : null}
-
+                        
+                        {formErrors.password.length > 0 ? <p className="error">{formErrors.password}</p> : null}
                         <input 
                         type="password" 
                         name="password" 
                         value={loginForm.password}
                         onChange={onChange}
                         placeholder="Password"/>
-                        {formErrors.password.length > 0 ? <p className="error">{formErrors.password}</p> : null}
+                        
                         {loggingIn && <p>Logging In...</p>}
                         {disabled === true ? <button className="btn-disabled" disabled={disabled}>Confirm</button> : <button className="btn" disabled={disabled}>Confirm</button>}
                         

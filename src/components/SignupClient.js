@@ -54,7 +54,7 @@ const FormContainerDiv = styled.div`
 
   }
   .error {
-      background-color: green;
+      align-items: top;
       color: red;
       font-size: .25rem;
   }
@@ -237,30 +237,31 @@ export default function Signup() {
         </div>
 
                 <form onSubmit={onSubmit}>
+                    {formErrors.name.length > 0 ? <p className="error">{formErrors.name}</p> : null}
                     <input 
                     type="text" 
                     name="name" 
                     value={clientForm.name}
                     onChange={onChange}
                     placeholder="Name"/>
-                    {formErrors.name.length > 0 ? <p className="error">{formErrors.name}</p> : null}
-
+                    
+                    {formErrors.username.length > 0 ? <p className="error">{formErrors.username}</p> : null}
                     <input 
                     type="text" 
                     name="username" 
                     value={clientForm.username}
                     onChange={onChange}
                     placeholder="Username"/>
-                    {formErrors.username.length > 0 ? <p className="error">{formErrors.username}</p> : null}
-
+                    
+                    {formErrors.email.length > 0 ? <p className="error">{formErrors.email}</p> : null}
                     <input 
                     type="email" 
                     name="email" 
                     value={clientForm.email}
                     onChange={onChange}
                     placeholder="Email"/>
-                    {formErrors.email.length > 0 ? <p className="error">{formErrors.email}</p> : null}
-
+                    
+                    {formErrors.password.length > 0 ? <p className="error">{formErrors.password}</p> : null}
                     <input 
                     id="bottom-input"
                     type="password" 
@@ -268,7 +269,7 @@ export default function Signup() {
                     value={clientForm.password}
                     onChange={onChange}
                     placeholder="Password"/>
-                    {formErrors.password.length > 0 ? <p className="error">{formErrors.password}</p> : null}
+                    
                     
                                    {registering && <p>Signing Up...</p>}
                     {disabled === true ? <button className="btn-disabled" disabled={disabled}>Confirm</button> : <button className="btn" disabled={disabled}>Confirm</button>}
