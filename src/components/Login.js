@@ -16,6 +16,59 @@ const FormContainerDiv = styled.div`
 /*   height: 75vh; */
   background-color: #ffffff;
   padding: 1rem;
+  .form-text-top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  #welcome-text {
+    font-weight: 400;
+    font-size: 2rem; 
+  }
+  #sub-text {
+    font-family: 'MuseoModerno', cursive;
+    font-size: .65rem;
+  }
+  #sub-text {
+    font-family: 'MuseoModerno', cursive;
+  }
+  form {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-content: center   
+  }
+  .form-bottom {
+      display: flex;
+      justify-content: center;
+      font-size: .65rem;
+  }
+  .btn {
+    flex: 1 1 auto;
+    background-image: linear-gradient(to right, #fbc2eb 0%, #a6c1ee 51%, #fbc2eb 100%);
+    margin: 10px;
+    border-radius: 45px;
+    padding: 10px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 150% auto;
+    color: white;
+    /* text-shadow: 0px 0px 10px rgba(0,0,0,0.2);*/
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    .btn:hover {
+        background-position: right center;
+    }
+  }
+  input {
+      outline: 0;
+      border-width: 0 0 2px;
+      border-color: aquamarine;
+  }
+  input:focus {
+      border-color: pink;
+  }
   display: flex;
   flex-direction: column;
   box-shadow: 0 2px 1px rgba(0,0,0,0.09), 
@@ -24,6 +77,8 @@ const FormContainerDiv = styled.div`
               0 16px 8px rgba(0,0,0,0.09),
               0 32px 16px rgba(0,0,0,0.09);
 `
+
+
 
 // const FormContainerDiv = styled.div`
 //     background-image: url("Assets/bruce-mars-ZXq7xoo98b0-unsplash.jpg");
@@ -162,7 +217,7 @@ function Login() {
                         onChange={onChange}
                         placeholder="Password"/>
                         {loggingIn && <p>Logging In...</p>}
-                        <button className="btn btn-1" disabled={disabled}>Confirm</button>
+                        <button className="btn" disabled={disabled}>Confirm</button>
                     </form>
                     <div class="form-bottom">
                     <p id="no-account">Don't have an account? </p><span id="sign-up">Sign Up</span>
