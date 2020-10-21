@@ -71,7 +71,6 @@ const FormContainerDiv = styled.div`
     .btn:hover {
         background-position: right center;
     }
-  }
 
     .btn-disabled {
     flex: 1 1 auto;
@@ -91,6 +90,7 @@ const FormContainerDiv = styled.div`
     .btn:hover {
         background-position: right center;
     }
+  }
 
   input {
       outline: 0;
