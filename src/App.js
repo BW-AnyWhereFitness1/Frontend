@@ -6,11 +6,12 @@ import SignupInstructor from './components/SignUpInstructor';
 import Navbar from './components/Navbar'
 
 
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import PrivateRoute from './components/PrivateRoute';
 import Dashboard from './components/Dashboard';
 import LandingPage from './components/LandingPage';
 
+import CreateClass from './components/CreateClass';
 
 
 class App extends Component {
@@ -24,6 +25,7 @@ class App extends Component {
           <Route exact path='/' component={LandingPage} />
           <Route path='/signupInstructor' component={SignupInstructor} />
           <PrivateRoute exact path='/dashboard' component={Dashboard} />
+          <PrivateRoute exact path='/createClass' component={CreateClass} />
       </Router>
       </div>
     );
