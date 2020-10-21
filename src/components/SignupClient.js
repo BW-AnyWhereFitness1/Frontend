@@ -117,30 +117,6 @@ const FormContainerDiv = styled.div`
               0 8px 4px rgba(0,0,0,0.09), 
               0 16px 8px rgba(0,0,0,0.09),
               0 32px 16px rgba(0,0,0,0.09);
-`
-
-const PicLeftDiv = styled.div`
-    padding-top: 2rem;
-    img {
-         max-width: 90%;
-         border-radius: 10px;
-         } 
-`
-
-const FormFieldsRightDiv = styled.div`
-    /* background-color: black; */
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-    padding-right: 2rem;
-    max-width:75%;
-    height: 100%;
-    /* display: flex;
-    flex-direction: column; */
-    /* align-items: flex-start; */
-    /* align-items: center; */
-    /* justify-content: center;
-    /* align-content: center; */ */
-
     form {
         display: flex;
         flex-direction: column;
