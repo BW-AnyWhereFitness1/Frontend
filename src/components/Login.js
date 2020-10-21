@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react';
-import axios from 'axios';
 import * as yup from "yup";
 import schema from '../formValidation/LogInSchema';
 import styled from 'styled-components';
-
+import {useDispatch, useSelector } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+import { userActions } from '../_actions';
 
 
 const FormContainerDiv = styled.div`
@@ -140,6 +141,8 @@ function Login() {
                {loggingIn && <p>Logging In...</p>}
                <button disabled={disabled}>Confirm</button>
            </form>
+           {localStorage.getItem('token') && <Redirect to="/dashboard" />}
+
         </FormContainerDiv>
     )
 }
