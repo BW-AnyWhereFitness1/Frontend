@@ -24,3 +24,23 @@ body {
   width: 100%;
   max-width: 100%;
 }
+
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+nav {
+  margin-bottom: 2rem;
+}
+
+
+
+
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
