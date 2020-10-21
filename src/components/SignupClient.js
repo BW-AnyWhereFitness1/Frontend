@@ -45,6 +45,7 @@ const FormContainerDiv = styled.div`
       justify-content: center;
       #have-account {
           font-size: .25rem;
+          margin-right: .35rem;
       }
       #sign-up {
           font-size: .25rem;
@@ -53,6 +54,7 @@ const FormContainerDiv = styled.div`
 
   }
   .error {
+      background-color: green;
       color: red;
       font-size: .25rem;
   }
@@ -99,11 +101,12 @@ const FormContainerDiv = styled.div`
   }
   input {
       margin-bottom: .15rem;
+      margin-bottom: 2rem;
       outline: 0;
       border-width: 0 0 2px;
       border-color: pink;
-      margin-bottom: 2rem;
   }
+
   input:focus {
       border-color: pink;
   }
@@ -259,6 +262,7 @@ export default function Signup() {
                     {formErrors.email.length > 0 ? <p className="error">{formErrors.email}</p> : null}
 
                     <input 
+                    id="bottom-input"
                     type="password" 
                     name="password" 
                     value={clientForm.password}

@@ -45,11 +45,12 @@ const FormContainerDiv = styled.div`
       display: flex;
       justify-content: center;
       #no-account {
-          font-size: .25rem;
+          font-size: .15rem;
+          margin-right: .35rem;
       }
       #sign-up {
-          font-size: .25rem;
-          font-weight: 700;
+          font-size: .15rem;
+          font-weight: 750;
       }
   }
   .error {
