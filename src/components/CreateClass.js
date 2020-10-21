@@ -1,19 +1,19 @@
 import React, {useState, useEffect} from 'react'
-import axios from 'axios'
 import * as yup from "yup"
 import schema from '../formValidation/createClassSchema'
 import styled from 'styled-components'
-
+import {useDispatch} from 'react-redux';
+import { userActions } from '../_actions';
 const classInitialvalues = {
-    classname: '',
-    classdescription: '',
-    classcost:'',
-    classequipment:'',
-    address:'',
-    classsize:'',
-    classlength:'',
-    arrivetime: '',
-    whattoknow:'',
+    classname: 'Running With Clay',
+    classdescription: 'How to run by clay',
+    classcost:'$199',
+    classequipment:'none required',
+    address:'Nebraska',
+    classsize:'100',
+    classlength:'10m',
+    arrivetime: '10AM',
+    whattoknow:'how to walk',
     start:'',
     classtype:'boxing',
     classlevel:'easy',
@@ -155,6 +155,7 @@ const FormContainers = styled.form`
 `
 
 export default function CreateClass() {
+    const dispatch = useDispatch();
 
      const [classForm, setclassForm] = useState(classInitialvalues)
 
@@ -198,19 +199,13 @@ export default function CreateClass() {
 
      const formSubmit = () => {
          const newclass = {
-             classname: classForm.classname.trim(),
-             classdescription: classForm.classdescription.trim(),
-             classcost: classForm.classcost.trim(),
-             classequipment: classForm.classequipment.trim(),
-             address: classForm.address.trim(),
-             classtype: classForm.type,
-             classsize: classForm.classsize.trim(),
-             classlength: classForm.classlength.trim(),
-             classlevel: classForm.classlevel,
-             arrivetime: classForm.arrivetime.trim(),
-             whattoknow: classForm.whattoknow.trim(),
-             start: classForm.start.trim(),
-             days: ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'].filter(day => classForm[day])
+             name: classForm.classname.trim(),
+             type: classForm.type,
+             location: classForm.address.trim(),
+             intensity: classForm.classlevel,
+             max_size: classForm.classsize.trim(),
+             duration: classForm.classlength.trim(),
+             signedUp: '0',
          }
          sendSignUp(newclass)
      }
@@ -228,10 +223,8 @@ export default function CreateClass() {
 
 
      const sendSignUp = newclass => {
-         axios.post('https://reqres.in/api/users', newclass)
-         .then(res => console.log(res.data))
-         .catch(e => console.log(e))
-         setclassForm(classInitialvalues)
+         dispatch(userActions.createClass(newclass));
+        setclassForm(classInitialvalues)
      }
 
     return (

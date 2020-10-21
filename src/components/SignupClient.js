@@ -184,7 +184,7 @@ export default function Signup() {
                     value={clientForm.password}
                     onChange={onChange}
                     placeholder="Password"/>
-                                   {registering && <p>Signing Up...</p>}
+                    {registering && <p>Signing Up...</p>}
 
                     <button disabled={disabled}>Confirm</button>
                 </form>
