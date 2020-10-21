@@ -15,7 +15,6 @@ const classInitialvalues = {
     arrivetime: '',
     whattoknow:'',
     start:'',
-    finish:'',
     classtype:'boxing',
     classlevel:'easy',
     sunday: false,
@@ -54,53 +53,71 @@ const initialErrors = {
 }
 
 const FormContainers = styled.form`
-    display:flex;
-    flex-direction:column;
+    max-width:1000px;
+    margin: 0 auto;
+    text-align:center;
+    color:#1f3c88;
+    h1 {
+        color:black;
+        text-align: center;
+        font-size:4rem;
+        margin:3rem 0;
+    }
     input {
-        width:400px;
+        width:100%;
         padding: 1rem;
-        border-radius:5px;
-        border: 1px lightgrey solid;
+        border:none;
+        border-bottom: 1px #9ba4b4  solid;
     }
     input[type='checkbox'] {
         display:none;
     }
     .label {
+        color: #07031a;
+        text-align:left;
         display:flex;
         margin: 1.5rem .9rem;
         flex-direction:column;
     }
     textarea {
-        width:400px;
+        width:100%;
         padding: 1rem;
         border-radius:5px;
-        border: 1px lightgrey solid;
+        border: 1px #9ba4b4 solid;
     }
     select {
         width:80px;
         border-radius:.4rem;
-        border: 1px lightgray solid;
+        border: 1px #9ba4b4 solid;
         padding:.6rem 0;
     }
     .checkbox {
         display:flex;
+        color: #07031a;
+        justify-content:center;
+        flex-wrap:wrap;
         label {
-            background:lightgray;
             border-radius:10px;
             margin-left:2rem;
             padding:.5rem 1.5rem;
             margin:3rem 0;
             margin-right: 3rem;
+            cursor: pointer;
+            &:hover {
+                background: #fbd46d;
+            }
         }
         .checkedbox {
-                background: orange;
+                background: #fbd46d;
             }
     }
 
     .classtime {
-        margin: .9rem;
+        text-align:left;
+        color: #07031a;
+        margin-left:-5rem;
         input {
-            width:50px;
+            width:60px;
             margin-left:1rem;
         }
         .classtimeto {
@@ -110,10 +127,30 @@ const FormContainers = styled.form`
     padding: 2rem 7rem;
     font-size: 2.5rem;
     button {
-        width:400px;
-        padding:1rem;
+        background:#f4f6ff;
+        padding:1.5rem 10rem;
         font-weight:bold;
-        color:darkgray;
+        color: gray;
+        border:none;
+        border-radius:1rem;
+    }
+    .btn-ready {
+        background: #fbd46d;
+        color: #07031a;
+    }
+    .formcontainer {
+        display:flex;
+        justify-content:space-between;
+        .leftform {
+            width:45%;
+        }
+        .rightform {
+            width:45%;
+        }
+    }
+    .error {
+        font-size:1.5rem;
+        color:red;
     }
 `
 
@@ -173,8 +210,6 @@ export default function CreateClass() {
              arrivetime: classForm.arrivetime.trim(),
              whattoknow: classForm.whattoknow.trim(),
              start: classForm.start.trim(),
-             finish: classForm.finish.trim(),
-             classtype: classForm.classtype,
              days: ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'].filter(day => classForm[day])
          }
          sendSignUp(newclass)
@@ -201,12 +236,10 @@ export default function CreateClass() {
 
     return (
         <div>
-           <h1>Create Class</h1>
-           <div>
-                {formErrors.classname}
-            </div>
            <FormContainers onSubmit={onSubmit}>
-
+                <h1>Create Class</h1>
+                <div className="formcontainer">
+                <div className="leftform">
                 <label className='label'>
                     Class Name
                     <input 
@@ -216,35 +249,7 @@ export default function CreateClass() {
                     onChange={onChange}
                     />
                 </label>
-                <label className='label'>
-                    Class Description
-                    <textarea 
-                    rows="4" 
-                    type="text" 
-                    name="classdescription" 
-                    value={classForm.classdescription}
-                    onChange={onChange}
-                    />
-                </label>
-                <label className='label'>
-                    Class Cost
-                    <input 
-                    type="text" 
-                    name="classcost" 
-                    value={classForm.classcost}
-                    onChange={onChange}
-                    />
-                </label>
-                <label className='label'>
-                    Class Equipment Requirements
-                    <textarea 
-                    rows="4"  
-                    type="text" 
-                    name="classequipment" 
-                    value={classForm.classequipment}
-                    onChange={onChange}
-                    />
-                </label>
+                <p className='error'>{formErrors.classname}</p>
                 <label className='label'>
                     Class Address
                     <input 
@@ -254,36 +259,27 @@ export default function CreateClass() {
                     onChange={onChange}
                     />
                 </label>
+                <p className='error'>{formErrors.address}</p>
                 <label className='label'>
-                    Class Type
-                    <select 
-                    onChange={onChange}
-                    value={classForm.classtype}
-                    name='classtype'
-                    >
-                        <option value="boxing">Boxing</option>
-                        <option value="yoga">Yoga</option>
-                        <option value="weights">Weights</option>
-                    </select>
-                </label>
-                <label className='label'>
-                    Class Size
+                    Class Cost
                     <input 
                     type="text" 
-                    name="classsize" 
-                    value={classForm.classsize}
+                    name="classcost" 
+                    value={classForm.classcost}
                     onChange={onChange}
                     />
                 </label>
+                <p className='error'>{formErrors.classcost}</p>
                 <label className='label'>
-                    Class Length
+                    Class Time
                     <input 
                     type="text" 
-                    name="classlength" 
-                    value={classForm.classlength}
+                    name="start" 
+                    value={classForm.start}
                     onChange={onChange}
                     />
                 </label>
+                <p className='error'>{formErrors.classtime}</p>
                 <label className='label'>
                     Class Level
                     <select 
@@ -296,6 +292,40 @@ export default function CreateClass() {
                         <option value="hard">Hard</option>
                     </select>
                 </label>
+                <p className='error'>{formErrors.classlevel}</p>
+                <label className='label'>
+                    Class Description
+                    <textarea 
+                    rows="4" 
+                    type="text" 
+                    name="classdescription" 
+                    value={classForm.classdescription}
+                    onChange={onChange}
+                    />
+                </label>
+                <p className='error'>{formErrors.classdescription}</p>
+                </div>
+                <div className="rightform">
+                <label className='label'>
+                    Class Length
+                    <input 
+                    type="text" 
+                    name="classlength" 
+                    value={classForm.classlength}
+                    onChange={onChange}
+                    />
+                </label>
+                <p className='error'>{formErrors.classlength}</p>
+                <label className='label'>
+                    Class Size
+                    <input 
+                    type="text" 
+                    name="classsize" 
+                    value={classForm.classsize}
+                    onChange={onChange}
+                    />
+                </label>
+                <p className='error'>{formErrors.classsize}</p>
                 <label className='label'>
                     When To Arrive
                     <input 
@@ -305,32 +335,43 @@ export default function CreateClass() {
                     onChange={onChange}
                     />
                 </label>
+                <p className='error'>{formErrors.arrivetime}</p>
                 <label className='label'>
                     What You Need To Know
-                    <textarea 
-                    rows="4" 
+                    <input 
                     type="text" 
                     name="whattoknow" 
                     value={classForm.whattoknow}
                     onChange={onChange}
                     />
                 </label>
-                <label className='classtime'>
-                    Class Time
-                    <input 
-                    type="text" 
-                    name="start" 
-                    value={classForm.start}
+                <p className='error'>{formErrors.whattoknow}</p>
+                <label className='label'>
+                    Class Type
+                    <select 
                     onChange={onChange}
-                    />
-                    <span className='classtimeto'>To</span>
-                    <input 
+                    value={classForm.classtype}
+                    name='classtype'
+                    >
+                        <option value="boxing">Boxing</option>
+                        <option value="yoga">Yoga</option>
+                        <option value="weights">Weights</option>
+                    </select>
+                </label>
+                <p className='error'>{formErrors.classtype}</p>
+                <label className='label'>
+                    Class Equipment Requirements
+                    <textarea 
+                    rows="4"  
                     type="text" 
-                    name="finish" 
-                    value={classForm.finish}
+                    name="classequipment" 
+                    value={classForm.classequipment}
                     onChange={onChange}
                     />
                 </label>
+                <p className='error'>{formErrors.classequipment}</p>
+                </div>
+                </div>
                 <div className='checkbox'>
                 <label 
                 className={`box ${checkbox.sunday ? 'checkedbox' : ''}`} 
@@ -417,7 +458,7 @@ export default function CreateClass() {
                 />
                 </label>
                 </div>
-                <button disabled={disabled}>Confirm</button>
+                <button disabled={disabled} className={`box ${disabled ? '' : 'btn-ready'}`} >Submit</button>
            </FormContainers>
         </div>
     )
