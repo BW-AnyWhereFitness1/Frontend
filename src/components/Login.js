@@ -8,38 +8,116 @@ import { userActions } from '../_actions';
 
 
 const FormContainerDiv = styled.div`
-    background-image: url("Assets/bruce-mars-ZXq7xoo98b0-unsplash.jpg");
-    background-size: 100%;
+  display: flex;
+  flex-direction:column;
+  align-self: flex-end;
+  margin-right: 2rem;
+  font-family: 'Comfortaa', cursive;
+  min-height: 25rem;
+  max-width: 25%;
+  border-radius: 10px;
+/*   height: 75vh; */
+  background-color: #ffffff;
+  padding: 1rem;
+  .form-text-top {
     display: flex;
     flex-direction: column;
-    background-color: black;
-    min-height: 45vh;
-    /* align-items: flex-end; */
-    /* max-width: 50%; */
-    width: 45%;
-    padding: 0rem;
-    border-radius: 10px;
-    background-color: white;
-    -webkit-box-shadow: 0px 6px 15px 0px rgba(0,0,0,0.45); 
-    box-shadow: 0 2px 1px rgba(0,0,0,0.09), 
+    align-items: center;
+  }
+  #welcome-text {
+    font-weight: 400;
+    font-size: 2rem; 
+  }
+  #sub-text {
+    font-family: 'MuseoModerno', cursive;
+    font-size: .65rem;
+  }
+  #sub-text {
+    font-family: 'MuseoModerno', cursive;
+  }
+  form {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-content: center   
+  }
+  .form-bottom {
+      display: flex;
+      justify-content: center;
+      #no-account {
+          font-size: .15rem;
+          margin-right: .35rem;
+      }
+      #sign-up {
+          font-size: .15rem;
+          font-weight: 750;
+      }
+  }
+  .error {
+      color: red;
+      font-size: .25rem;
+  }
+  
+  button {
+      color: white;
+  }
+
+  .btn {
+    flex: 1 1 auto;
+    background-image: linear-gradient(to right, #fbc2eb 0%, #a6c1ee 51%, #fbc2eb 100%);
+    margin: 10px;
+    border-radius: 5px;
+    padding: 3px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 150% auto;
+    color: white;
+    /* text-shadow: 0px 0px 10px rgba(0,0,0,0.2);*/
+    box-shadow: 0 0 20px #eee;
+    .btn:hover {
+        background-position: right center;
+    }
+
+    .btn-disabled {
+    flex: 1 1 auto;
+    /* background-image: linear-gradient(to right, #fbc2eb 0%, #a6c1ee 51%, #fbc2eb 100%); */
+    background-color: grey;
+    margin: 10px;
+    border-radius: 5px;
+    padding: 3px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 150% auto;
+    color: white;
+    /* text-shadow: 0px 0px 10px rgba(0,0,0,0.2);*/
+    box-shadow: 0 0 20px #eee;
+    }
+    .btn:hover {
+        background-position: right center;
+    }
+  }
+
+  input {
+      margin-bottom: .15rem;
+      margin-bottom: 2rem;
+      outline: 0;
+      border-width: 0 0 2px;
+      border-color: pink;
+  }
+  input:focus {
+      border-color: pink;
+  }
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 1px rgba(0,0,0,0.09), 
               0 4px 2px rgba(0,0,0,0.09), 
               0 8px 4px rgba(0,0,0,0.09), 
               0 16px 8px rgba(0,0,0,0.09),
               0 32px 16px rgba(0,0,0,0.09);
-
-    button {
-        background-color: #40e0d0;
-        color: white;
-    }
-    text-align:center;
-    input {
-        margin: 1rem 0;
-    }
 `
 
-const H1Title = styled.h1`
-    color: white;
-`
 
 
 const loginInitialvalues = {
@@ -118,29 +196,37 @@ function Login() {
 
     return (
         <FormContainerDiv>
-           <H1Title>Log In</H1Title>
-           <div>
-                <div>{formErrors.username}</div>
-                <div>{formErrors.password}</div>
+
+           <div class="form-text-top">
+                <p id="welcome-text">Welcome</p>
+                <p id="sub-text">Anywhere Fitness</p>
             </div>
-           <form onSubmit={onSubmit}>
-
-               <input 
-               type="text" 
-               name="username" 
-               value={loginForm.username}
-               onChange={onChange}
-               placeholder="Username"/>
-
-               <input 
-               type="password" 
-               name="password" 
-               value={loginForm.password}
-               onChange={onChange}
-               placeholder="Password"/>
-               {loggingIn && <p>Logging In...</p>}
-               <button disabled={disabled}>Confirm</button>
-           </form>
+                <div class="input">
+                    <form onSubmit={onSubmit}>
+                       {formErrors.username.length > 0 ? <p className="error">{formErrors.username}</p> : null}
+                        <input 
+                        type="text" 
+                        name="username" 
+                        value={loginForm.username}
+                        onChange={onChange}
+                        placeholder="Username"/>
+                        
+                        {formErrors.password.length > 0 ? <p className="error">{formErrors.password}</p> : null}
+                        <input 
+                        type="password" 
+                        name="password" 
+                        value={loginForm.password}
+                        onChange={onChange}
+                        placeholder="Password"/>
+                        
+                        {loggingIn && <p>Logging In...</p>}
+                        {disabled === true ? <button className="btn-disabled" disabled={disabled}>Confirm</button> : <button className="btn" disabled={disabled}>Confirm</button>}
+                        
+                    </form>
+                    <div class="form-bottom">
+                    <span id="no-account">Don't have an account?</span><span id="sign-up">Sign Up</span>
+                    </div>
+            </div>
            {localStorage.getItem('token') && <Redirect to="/dashboard" />}
 
         </FormContainerDiv>
