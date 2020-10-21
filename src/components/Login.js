@@ -13,6 +13,7 @@ const FormContainerDiv = styled.div`
   align-self: flex-end;
   margin-right: 2rem;
   font-family: 'Comfortaa', cursive;
+  min-height: 25rem;
   max-width: 25%;
   border-radius: 10px;
 /*   height: 75vh; */
@@ -205,7 +206,7 @@ function Login() {
            <div class="form-text-top">
                 <p id="welcome-text">Welcome</p>
                 <p id="sub-text">Anywhere Fitness</p>
-                </div>
+            </div>
                 <div class="input">
                     <form onSubmit={onSubmit}>
 
@@ -229,7 +230,7 @@ function Login() {
                     </form>
                     <div class="form-bottom">
                     <span id="no-account">Don't have an account?</span><span id="sign-up">Sign Up</span>
-            </div>
+                    </div>
             </div>
            {localStorage.getItem('token') && <Redirect to="/dashboard" />}
 
