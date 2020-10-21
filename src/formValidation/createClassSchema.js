@@ -46,11 +46,6 @@ export default yup.object().shape({
     .string()
     .required("start time is required")
     .min(3, "start time must be 4 character"),
-
-    finish: yup
-    .string()
-    .required("finish time is required")
-    .min(3, "finish time must be 4 character"),
     
     classtype: yup
     .string()
