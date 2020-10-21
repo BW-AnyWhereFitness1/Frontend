@@ -71,6 +71,24 @@ const FormContainerDiv = styled.div`
     .btn:hover {
         background-position: right center;
     }
+
+    .btn-disabled {
+    flex: 1 1 auto;
+    /* background-image: linear-gradient(to right, #fbc2eb 0%, #a6c1ee 51%, #fbc2eb 100%); */
+    background-color: grey;
+    margin: 10px;
+    border-radius: 5px;
+    padding: 3px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 150% auto;
+    color: white;
+    /* text-shadow: 0px 0px 10px rgba(0,0,0,0.2);*/
+    box-shadow: 0 0 20px #eee;
+    .btn:hover {
+        background-position: right center;
+    }
   }
   input {
       outline: 0;
@@ -226,7 +244,8 @@ function Login() {
                         placeholder="Password"/>
                         {formErrors.password.length > 0 ? <p className="error">{formErrors.password}</p> : null}
                         {loggingIn && <p>Logging In...</p>}
-                        <button className="btn" disabled={disabled}>Confirm</button>
+                        {disabled === true ? <button className="btn-disabled" disabled={disabled}>Confirm</button> : <button className="btn" disabled={disabled}>Confirm</button>}
+                        
                     </form>
                     <div class="form-bottom">
                     <span id="no-account">Don't have an account?</span><span id="sign-up">Sign Up</span>
