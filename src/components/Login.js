@@ -71,6 +71,7 @@ const FormContainerDiv = styled.div`
     .btn:hover {
         background-position: right center;
     }
+  }
 
     .btn-disabled {
     flex: 1 1 auto;
@@ -86,10 +87,11 @@ const FormContainerDiv = styled.div`
     color: white;
     /* text-shadow: 0px 0px 10px rgba(0,0,0,0.2);*/
     box-shadow: 0 0 20px #eee;
+    }
     .btn:hover {
         background-position: right center;
     }
-  }
+
   input {
       outline: 0;
       border-width: 0 0 2px;
@@ -107,41 +109,6 @@ const FormContainerDiv = styled.div`
               0 32px 16px rgba(0,0,0,0.09);
 `
 
-
-
-// const FormContainerDiv = styled.div`
-//     background-image: url("Assets/bruce-mars-ZXq7xoo98b0-unsplash.jpg");
-//     background-size: 100%;
-//     display: flex;
-//     flex-direction: column;
-//     background-color: black;
-//     min-height: 45vh;
-//     /* align-items: flex-end; */
-//     /* max-width: 50%; */
-//     width: 45%;
-//     padding: 0rem;
-//     border-radius: 10px;
-//     background-color: white;
-//     -webkit-box-shadow: 0px 6px 15px 0px rgba(0,0,0,0.45); 
-//     box-shadow: 0 2px 1px rgba(0,0,0,0.09), 
-//               0 4px 2px rgba(0,0,0,0.09), 
-//               0 8px 4px rgba(0,0,0,0.09), 
-//               0 16px 8px rgba(0,0,0,0.09),
-//               0 32px 16px rgba(0,0,0,0.09);
-
-//     button {
-//         background-color: #40e0d0;
-//         color: white;
-//     }
-//     text-align:center;
-//     input {
-//         margin: 1rem 0;
-//     }
-// `
-
-const H1Title = styled.h1`
-    color: black;
-`
 
 
 const loginInitialvalues = {
