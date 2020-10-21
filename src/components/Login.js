@@ -56,7 +56,7 @@ const FormContainerDiv = styled.div`
 // `
 
 const H1Title = styled.h1`
-    color: white;
+    color: black;
 `
 
 
@@ -136,29 +136,38 @@ function Login() {
 
     return (
         <FormContainerDiv>
-           <H1Title>Log In</H1Title>
-           <div>
-                <div>{formErrors.username}</div>
-                <div>{formErrors.password}</div>
+
+           <div class="form-text-top">
+                <p id="welcome-text">Welcome</p>
+                <p id="sub-text">Anywhere Fitness</p>
+                </div>
+            <div>
+                    <div>{formErrors.username}</div>
+                    <div>{formErrors.password}</div>
+                </div>
+                <div class="input">
+                    <form onSubmit={onSubmit}>
+
+                        <input 
+                        type="text" 
+                        name="username" 
+                        value={loginForm.username}
+                        onChange={onChange}
+                        placeholder="Username"/>
+
+                        <input 
+                        type="password" 
+                        name="password" 
+                        value={loginForm.password}
+                        onChange={onChange}
+                        placeholder="Password"/>
+                        {loggingIn && <p>Logging In...</p>}
+                        <button className="btn btn-1" disabled={disabled}>Confirm</button>
+                    </form>
+                    <div class="form-bottom">
+                    <p id="no-account">Don't have an account? </p><span id="sign-up">Sign Up</span>
             </div>
-           <form onSubmit={onSubmit}>
-
-               <input 
-               type="text" 
-               name="username" 
-               value={loginForm.username}
-               onChange={onChange}
-               placeholder="Username"/>
-
-               <input 
-               type="password" 
-               name="password" 
-               value={loginForm.password}
-               onChange={onChange}
-               placeholder="Password"/>
-               {loggingIn && <p>Logging In...</p>}
-               <button disabled={disabled}>Confirm</button>
-           </form>
+            </div>
            {localStorage.getItem('token') && <Redirect to="/dashboard" />}
 
         </FormContainerDiv>

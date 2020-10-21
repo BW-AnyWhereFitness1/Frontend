@@ -5,7 +5,6 @@ import { Login } from './components/Login';
 import Signup from './components/SignupClient';
 import SignupInstructor from './components/SignUpInstructor';
 
-
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import PrivateRoute from './components/PrivateRoute';
 import Dashboard from './components/Dashboard';
