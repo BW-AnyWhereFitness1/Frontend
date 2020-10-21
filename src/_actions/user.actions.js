@@ -5,10 +5,11 @@ export const userActions = {
     login,
     logout,
     register,
-    registerInstructor
+    registerInstructor,
+    getClassesClient
 };
 
-function login(username, password, from) {
+function login(username, password) {
     return dispatch => {
         dispatch(request({ username }));
 
@@ -32,6 +33,25 @@ function login(username, password, from) {
 function logout() {
     userService.logout();
     return { type: userConstants.LOGOUT };
+}
+
+function getClassesClient() {
+    return dispatch => {
+        dispatch(request());
+        userService.getClassesClient()
+            .then(
+                res => { 
+                    dispatch(success(res));
+                },
+                error => {
+                    dispatch(failure(error.toString()));
+                }
+            );
+    };
+
+    function request() { return { type: userConstants.CLASSES_GET_REQUEST } }
+    function success(res) { return { type: userConstants.CLASSES_GET_SUCCESS, res } }
+    function failure(error) { return { type: userConstants.CLASSES_GET_FAILURE, error } }
 }
 
 function register(user) {

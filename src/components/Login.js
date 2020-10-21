@@ -9,7 +9,7 @@ import { userActions } from '../_actions';
 const loginInitialvalues = {
     username: '',
     password: ''
-}   
+}
 
 const initialErrors = {
     username: '',
