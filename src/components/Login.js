@@ -44,7 +44,13 @@ const FormContainerDiv = styled.div`
   .form-bottom {
       display: flex;
       justify-content: center;
-      font-size: .65rem;
+      #no-account {
+          font-size: .25rem;
+      }
+      #sign-up {
+          font-size: .25rem;
+          font-weight: 700;
+      }
   }
   .error {
       color: red;
@@ -93,6 +99,8 @@ const FormContainerDiv = styled.div`
   }
 
   input {
+      margin-bottom: .15rem;
+      margin-bottom: 2rem;
       outline: 0;
       border-width: 0 0 2px;
       border-color: pink;

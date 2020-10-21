@@ -43,7 +43,14 @@ const FormContainerDiv = styled.div`
   .form-bottom {
       display: flex;
       justify-content: center;
-      font-size: .65rem;
+      #have-account {
+          font-size: .25rem;
+      }
+      #sign-up {
+          font-size: .25rem;
+          font-weight: 700;
+      }
+
   }
   .error {
       color: red;
@@ -91,9 +98,11 @@ const FormContainerDiv = styled.div`
     }
   }
   input {
+      margin-bottom: .15rem;
       outline: 0;
       border-width: 0 0 2px;
       border-color: pink;
+      margin-bottom: 2rem;
   }
   input:focus {
       border-color: pink;
@@ -261,7 +270,7 @@ export default function Signup() {
                     {disabled === true ? <button className="btn-disabled" disabled={disabled}>Confirm</button> : <button className="btn" disabled={disabled}>Confirm</button>}
                 </form>
                 <div class="form-bottom">
-                    <span id="no-account">Already have an account?</span><span id="sign-up">Sign In</span>
+                    <span id="have-account">Already have an account?</span><span id="sign-up">Sign In</span>
                 </div>
         </FormContainerDiv>
     )
