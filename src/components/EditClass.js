@@ -4,23 +4,6 @@ import schema from '../formValidation/createClassSchema'
 import styled from 'styled-components'
 import {useDispatch} from 'react-redux';
 import { userActions } from '../_actions';
-const classInitialvalues = {
-    classname: '',
-    classcost:'',
-    address:'',
-    classsize:'',
-    classlength:'',
-    start:'',
-    classtype:'boxing',
-    classlevel:'easy',
-    sunday: false,
-    monday: false,
-    tuesday:false,
-    wednesday:false,
-    thursday:false,
-    friday:false,
-    saturday:false  
-}  
 
 const checkboxInitial = {
     sunday: false,
@@ -107,6 +90,7 @@ const FormContainers = styled.form`
                 background: #fbd46d;
             }
     }
+
     .classtime {
         text-align:left;
         color: #07031a;
@@ -149,14 +133,11 @@ const FormContainers = styled.form`
     }
 `
 
-export default function CreateClass() {
+export default function EditClass({id, setclassForm, classForm, classInitialvalues, disabled, setDisabled}) {
     const dispatch = useDispatch();
-
-     const [classForm, setclassForm] = useState(classInitialvalues)
 
      const [formErrors, setFormErrors] = useState(initialErrors)
 
-     const [disabled, setDisabled] = useState(true)
 
      const [checkbox, setCheckbox] = useState(checkboxInitial)
      
@@ -198,12 +179,13 @@ export default function CreateClass() {
              type: classForm.classtype,
              location: classForm.address.trim(),
              intensity: classForm.classlevel,
-             max_size: classForm.classsize.trim(),
-             duration: classForm.classlength.trim(),
+             max_size: classForm.classsize,
+             duration: classForm.classlength,
              date: classForm.start.trim()
          }
-         console.log(newclass)
+         console.log(classInitialvalues)
          sendSignUp(newclass)
+         
      }
 
      const onSubmit = e => {
@@ -217,16 +199,16 @@ export default function CreateClass() {
         });
       }, [classForm]);
 
-
      const sendSignUp = newclass => {
-         dispatch(userActions.createClass(newclass));
+         dispatch(userActions.editClass(newclass, id));
          setclassForm(classInitialvalues)
+         
      }
 
     return (
         <div>
            <FormContainers onSubmit={onSubmit}>
-                <h1>Create Class</h1>
+                <h1>Edit Class ({id})</h1>
                 <div className="formcontainer">
                 <div className="leftform">
                 <label className='label'>
@@ -300,6 +282,8 @@ export default function CreateClass() {
                     value={classForm.classtype}
                     name='classtype'
                     >
+                        <option value="cardio">Cardio</option>
+                        <option value="medetation">Medetation</option>
                         <option value="boxing">Boxing</option>
                         <option value="yoga">Yoga</option>
                         <option value="weights">Weights</option>
@@ -407,8 +391,9 @@ export default function CreateClass() {
                 />
                 </label>
                 </div>
-                <button disabled={disabled} className={`box ${disabled ? '' : 'btn-ready'}`} >Submit</button>
+                <button disabled={disabled} className={`box ${disabled ? '' : 'btn-ready'}`} >Update</button>
            </FormContainers>
         </div>
     )
 }
+

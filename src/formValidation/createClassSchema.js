@@ -7,14 +7,12 @@ export default yup.object().shape({
     .min(6, "class name must be 6 character"),
   
     classcost: yup
-    .string()
-    .required("class cost is required")
-    .min(1, "class cost must be 1 character"),
-    
+    .string(),
+
     address: yup
     .string()
     .required("address is required")
-    .min(6, "address must be 6 character"),
+    .min(5, "address must be 5 characters"),
 
     classsize: yup
     .string()
@@ -33,11 +31,10 @@ export default yup.object().shape({
     
     classtype: yup
     .string()
-    .oneOf(["yoga", "boxing", "weights"], "class type is required"),
+    .oneOf(["yoga", "boxing", "weights","cardio","medetation"], "class type is required"),
 
     classlevel: yup
-    .string()
-    .oneOf(["easy", "medium", "hard"], "class level is required"),
+    .string(),
 
     sunday: yup.boolean(),
     monday: yup.boolean(),

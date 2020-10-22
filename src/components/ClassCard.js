@@ -1,5 +1,6 @@
 import React from "react"
 import styled from 'styled-components';
+import { useSelector} from 'react-redux';
 
 const CardContainer = styled.div`
     display:flex;
@@ -45,6 +46,9 @@ const CardContainer = styled.div`
 `
 const ClassCard = (props) => {
     const classProp = props.class
+    const instructorPane = useSelector(state => state.verifyInstructorReducer)
+
+   
     return(
         <CardContainer>
         <div className = 'nohand right'>
@@ -59,8 +63,13 @@ const ClassCard = (props) => {
             <h2>Where</h2>
             <div className = 'flexrow'>
             <p>{classProp.location}</p>
+            {
+              instructorPane.response && <button className = 'topright' onClick = {() => props.edit(classProp)} >Edit</button>
+            }
             </div>
             </div>
+            
+            
         </CardContainer>
     )
 }

@@ -8,7 +8,8 @@ export const userActions = {
     registerInstructor,
     getClassesClient,
     checkInstructor,
-    createClass
+    createClass,
+    editClass
 };
 
 function login(username, password) {
@@ -93,6 +94,26 @@ function createClass(classObj) {
     function request() { return { type: userConstants.CREATE_CLASS_REQUEST } }
     function success(res) { return { type: userConstants.CREATE_CLASS_SUCCESS, res } }
     function failure(error) { return { type: userConstants.CREATE_CLASS_FAILURE, error } }
+}
+
+function editClass(classObj, id) {
+    return dispatch => {
+        console.log('dispatched')
+        dispatch(request(classObj, id));
+        userService.editClass(classObj, id)
+            .then(
+                res => { 
+                    dispatch(success(res));
+                },
+                error => {
+                    dispatch(failure(error.toString()));
+                }
+            );
+    };
+
+    function request() { return { type: userConstants.EDIT_CLASS_REQUEST } }
+    function success(res) { return { type: userConstants.EDIT_CLASS_SUCCESS, res } }
+    function failure(error) { return { type: userConstants.EDIT_CLASS_FAILURE, error } }
 }
 
 function register(user) {

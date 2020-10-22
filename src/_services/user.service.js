@@ -6,7 +6,8 @@ export const userService = {
     registerInstructor,
     getClassesClient,
     checkInstructor,
-    createClass
+    createClass,
+    editClass
 };
 const apiUrl = 'https://anywherefit.herokuapp.com'
 function login(user) {
@@ -53,6 +54,21 @@ function createClass(classObj) {
     };
     console.log(requestOptions.body);
     return fetch(`${apiUrl}/api/auth/instructor/classes/add`, requestOptions)
+    .then(handleResponse)
+    .then(res => {
+        console.log(res)
+        return res;
+    });
+}
+
+function editClass(classObj, id) {
+    const requestOptions = {
+        method: 'PUT',
+        headers: authHeader(),
+        body: JSON.stringify(classObj),
+    };
+    console.log(requestOptions.body);
+    return fetch(`${apiUrl}/api/auth/instructor/classes/${id}`, requestOptions)
     .then(handleResponse)
     .then(res => {
         console.log(res)
