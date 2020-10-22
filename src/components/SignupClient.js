@@ -4,6 +4,7 @@ import schema from '../formValidation/signUpSchema';
 import styled from 'styled-components';
 import {useDispatch, useSelector } from 'react-redux';
 import { userActions } from '../_actions';
+import { Link } from 'react-router-dom';
 
 // STYLING
 const FormContainerDiv = styled.div`
@@ -248,9 +249,7 @@ export default function Signup() {
                                    {registering && <p>Signing Up...</p>}
                     {disabled === true ? <button className="btn-disabled" disabled={disabled}>Confirm</button> : <button className="btn" disabled={disabled}>Confirm</button>}
                 </form>
-                <div class="form-bottom">
-                    <span id="have-account">Already have an account?</span><span id="sign-up">Sign In</span>
-                </div>
+               <span>Want to be an instructor? <Link to='/signupInstructor'>Sign up here</Link></span>
         </FormContainerDiv>
     )
 }
