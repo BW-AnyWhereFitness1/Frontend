@@ -9,7 +9,8 @@ export const userActions = {
     getClassesClient,
     checkInstructor,
     createClass,
-    editClass
+    editClass,
+    deleteClass
 };
 
 function login(username, password) {
@@ -114,6 +115,26 @@ function editClass(classObj, id) {
     function request() { return { type: userConstants.EDIT_CLASS_REQUEST } }
     function success(res) { return { type: userConstants.EDIT_CLASS_SUCCESS, res } }
     function failure(error) { return { type: userConstants.EDIT_CLASS_FAILURE, error } }
+}
+
+function deleteClass(id) {
+    return dispatch => {
+        console.log('dispatched')
+        dispatch(request(id));
+        userService.deleteClass(id)
+            .then(
+                res => { 
+                    dispatch(success(res));
+                },
+                error => {
+                    dispatch(failure(error.toString()));
+                }
+            );
+    };
+
+    function request() { return { type: userConstants.DELETE_CLASS_REQUEST } }
+    function success(res) { return { type: userConstants.DELETE_CLASS_SUCCESS, res } }
+    function failure(error) { return { type: userConstants.DELETE_CLASS_FAILURE, error } }
 }
 
 function register(user) {

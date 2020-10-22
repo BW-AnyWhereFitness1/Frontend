@@ -7,7 +7,8 @@ export const userService = {
     getClassesClient,
     checkInstructor,
     createClass,
-    editClass
+    editClass,
+    deleteClass
 };
 const apiUrl = 'https://anywherefit.herokuapp.com'
 function login(user) {
@@ -68,6 +69,19 @@ function editClass(classObj, id) {
         body: JSON.stringify(classObj),
     };
     console.log(requestOptions.body);
+    return fetch(`${apiUrl}/api/auth/instructor/classes/${id}`, requestOptions)
+    .then(handleResponse)
+    .then(res => {
+        console.log(res)
+        return res;
+    });
+}
+function deleteClass(id) {
+    const requestOptions = {
+        method: 'DELETE',
+        headers: authHeader()
+    };
+    console.log(id);
     return fetch(`${apiUrl}/api/auth/instructor/classes/${id}`, requestOptions)
     .then(handleResponse)
     .then(res => {

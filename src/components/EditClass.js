@@ -4,6 +4,7 @@ import schema from '../formValidation/createClassSchema'
 import styled from 'styled-components'
 import {useDispatch} from 'react-redux';
 import { userActions } from '../_actions';
+import { useHistory } from 'react-router'
 
 const checkboxInitial = {
     sunday: false,
@@ -18,7 +19,6 @@ const checkboxInitial = {
 const initialErrors = {
     classname: '',
     classdescription: '',
-    classcost:'',
     classequipment:'',
     address:'',
     classsize:'',
@@ -135,8 +135,11 @@ const FormContainers = styled.form`
 
 export default function EditClass({id, setclassForm, classForm, classInitialvalues, disabled, setDisabled}) {
     const dispatch = useDispatch();
+    const history = useHistory()
+
 
      const [formErrors, setFormErrors] = useState(initialErrors)
+
 
 
      const [checkbox, setCheckbox] = useState(checkboxInitial)
@@ -202,7 +205,7 @@ export default function EditClass({id, setclassForm, classForm, classInitialvalu
      const sendSignUp = newclass => {
          dispatch(userActions.editClass(newclass, id));
          setclassForm(classInitialvalues)
-         
+         history.go(0);
      }
 
     return (
@@ -231,16 +234,6 @@ export default function EditClass({id, setclassForm, classForm, classInitialvalu
                     />
                 </label>
                 <p className='error'>{formErrors.address}</p>
-                <label className='label'>
-                    Class Cost
-                    <input 
-                    type="text" 
-                    name="classcost" 
-                    value={classForm.classcost}
-                    onChange={onChange}
-                    />
-                </label>
-                <p className='error'>{formErrors.classcost}</p>
                 <label className='label'>
                     Class Date
                     <input 
@@ -392,6 +385,7 @@ export default function EditClass({id, setclassForm, classForm, classInitialvalu
                 </label>
                 </div>
                 <button disabled={disabled} className={`box ${disabled ? '' : 'btn-ready'}`} >Update</button>
+                <a onClick={() => dispatch(userActions.deleteClass(id))}>Delete Class</a>
            </FormContainers>
         </div>
     )
