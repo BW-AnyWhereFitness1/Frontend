@@ -167,7 +167,6 @@ export default function Signup() {
               [name]: err.errors[0],
             })
           }) 
-
         setclientForm({
             ...clientForm, [name]: value
         })
@@ -245,7 +244,6 @@ export default function Signup() {
                     value={clientForm.password}
                     onChange={onChange}
                     placeholder="Password"/>
-                    
                     
                                    {registering && <p>Signing Up...</p>}
                     {disabled === true ? <button className="btn-disabled" disabled={disabled}>Confirm</button> : <button className="btn" disabled={disabled}>Confirm</button>}

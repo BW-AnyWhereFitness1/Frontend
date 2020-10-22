@@ -1,9 +1,9 @@
 import React from 'react'
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import { userActions } from '../_actions';
 import { Redirect, Link } from 'react-router-dom';
-
+import EditClass from './EditClass'
 import ClassCard from './ClassCard'
 import styled from 'styled-components';
 
@@ -22,7 +22,33 @@ const DashboardWrapper = styled.div`
 export default function Dashboard() {
     const classes = useSelector(state => state.classReducer);
     const instructorPane = useSelector(state => state.verifyInstructorReducer)
-     const dispatch = useDispatch();
+    const dispatch = useDispatch();
+
+    const classInitialvalues = {
+        classname: '',
+        classcost:'',
+        address:'',
+        classsize:'',
+        classlength:'',
+        start:'',
+        classtype:'boxing',
+        classlevel:'easy',
+        sunday: false,
+        monday: false,
+        tuesday:false,
+        wednesday:false,
+        thursday:false,
+        friday:false,
+        saturday:false  
+    } 
+     const [classForm, setclassForm] = useState(classInitialvalues)
+
+     const [disabled, setDisabled] = useState(true)
+
+     const [classObject, setClassObject] = useState(classInitialvalues)
+
+     const [showEdit, setShowEdit] = useState(false)
+
      function startLogOut() {
         console.log('called logout')
         dispatch(userActions.logout());
@@ -30,6 +56,31 @@ export default function Dashboard() {
 
 
      }
+
+     function edit(classObj) {
+        setShowEdit(true);
+        setClassObject(classObj);
+        const {
+            date,
+            intensity,
+            location,
+            max_size,
+            type,
+            name,
+            duration
+        } = classObj
+
+        setclassForm({
+            classname: name,
+            classlevel: intensity,
+            address: location,
+            classsize: max_size,
+            classtype: type,
+            start: date,
+            classlength: duration
+        })
+        console.log(classObj)
+    }
      useEffect(() => {
         dispatch(userActions.getClassesClient());
         dispatch(userActions.checkInstructor());
@@ -45,13 +96,15 @@ export default function Dashboard() {
 
            {classes.classes &&
                 <Browser>
-                    {classes.classes.map((user, index) =>
-                        <ClassCard key = {user.id} class = {user}/>
+                    {classes.classes.map((classObj) =>
+                        <ClassCard key = {classObj.id} class = {classObj} edit={edit}/>
                     )}
                 </Browser>
             }
-            {instructorPane.response &&
-           <Link to='/createClass'>Create A Class</Link>
+            {
+              instructorPane.response && <Link to = '/createClass'>Add Class</Link>
+            }
+            { showEdit && <EditClass id = {classObject.id} setclassForm={setclassForm} disabled={disabled} setDisabled={setDisabled} classForm={classForm} classInitialvalues={classInitialvalues}/>
             }
         </DashboardWrapper>
         
