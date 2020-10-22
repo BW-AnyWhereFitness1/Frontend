@@ -104,7 +104,7 @@ export default function Dashboard() {
             {
               instructorPane.response && <Link to = '/createClass'>Add Class</Link>
             }
-            { showEdit && <EditClass id = {classObject.id} setclassForm={setclassForm} disabled={disabled} setDisabled={setDisabled} classForm={classForm} classInitialvalues={classInitialvalues}/>
+            { showEdit && <EditClass id = {classObject.id}  setclassForm={setclassForm} disabled={disabled} setDisabled={setDisabled} classForm={classForm} classInitialvalues={classInitialvalues}/>
             }
         </DashboardWrapper>
         
