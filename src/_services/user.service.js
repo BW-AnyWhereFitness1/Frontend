@@ -46,18 +46,16 @@ function getClassesClient() {
 }
 
 function createClass(classObj) {
-
     const requestOptions = {
         method: 'POST',
         headers: authHeader(),
-        body: JSON.stringify(classObj)
+        body: JSON.stringify(classObj),
     };
     console.log(requestOptions.body);
-    return fetch(`${apiUrl}/api/auth/instructor/classes`, requestOptions)
+    return fetch(`${apiUrl}/api/auth/instructor/classes/add`, requestOptions)
     .then(handleResponse)
     .then(res => {
-        console.log('createClass')
-        console.log(res.message)
+        console.log(res)
         return res;
     });
 }

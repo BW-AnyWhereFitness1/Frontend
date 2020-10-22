@@ -6,19 +6,11 @@ export default yup.object().shape({
     .required("class name is required")
     .min(6, "class name must be 6 character"),
   
-    classdescription: yup
-    .string()
-    .required("class description is required")
-    .min(10, "classdescription must be 10 character"),
-  
     classcost: yup
     .string()
     .required("class cost is required")
     .min(1, "class cost must be 1 character"),
     
-    classequipment: yup
-    .string(),
-
     address: yup
     .string()
     .required("address is required")
@@ -33,14 +25,6 @@ export default yup.object().shape({
     .string()
     .required("class length is required")
     .min(1, "class length must be 1 character"),
-
-    arrivetime: yup
-    .string()
-    .required("arrive time is required")
-    .min(3, "arrive time must be 4 character"),
-
-    whattoknow: yup
-    .string(),
 
     start: yup
     .string()

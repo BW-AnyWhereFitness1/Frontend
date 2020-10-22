@@ -5,15 +5,11 @@ import styled from 'styled-components'
 import {useDispatch} from 'react-redux';
 import { userActions } from '../_actions';
 const classInitialvalues = {
-    classname: 'Running With Clay',
-    classdescription: 'How to run by clay',
-    classcost:'$199',
-    classequipment:'none required',
-    address:'Nebraska',
-    classsize:'100',
-    classlength:'10m',
-    arrivetime: '10AM',
-    whattoknow:'how to walk',
+    classname: '',
+    classcost:'',
+    address:'',
+    classsize:'',
+    classlength:'',
     start:'',
     classtype:'boxing',
     classlevel:'easy',
@@ -200,13 +196,14 @@ export default function CreateClass() {
      const formSubmit = () => {
          const newclass = {
              name: classForm.classname.trim(),
-             type: classForm.type,
+             type: classForm.classtype,
              location: classForm.address.trim(),
              intensity: classForm.classlevel,
              max_size: classForm.classsize.trim(),
              duration: classForm.classlength.trim(),
-             signedUp: '0',
+             date: classForm.start.trim()
          }
+         console.log(newclass)
          sendSignUp(newclass)
      }
 
@@ -224,7 +221,7 @@ export default function CreateClass() {
 
      const sendSignUp = newclass => {
          dispatch(userActions.createClass(newclass));
-        setclassForm(classInitialvalues)
+         setclassForm(classInitialvalues)
      }
 
     return (
@@ -264,7 +261,7 @@ export default function CreateClass() {
                 </label>
                 <p className='error'>{formErrors.classcost}</p>
                 <label className='label'>
-                    Class Time
+                    Class Date
                     <input 
                     type="text" 
                     name="start" 
@@ -273,30 +270,8 @@ export default function CreateClass() {
                     />
                 </label>
                 <p className='error'>{formErrors.classtime}</p>
-                <label className='label'>
-                    Class Level
-                    <select 
-                    onChange={onChange}
-                    value={classForm.classlevel}
-                    name='classlevel'
-                    >
-                        <option value="easy">Easy</option>
-                        <option value="medium">Medium</option>
-                        <option value="hard">Hard</option>
-                    </select>
-                </label>
-                <p className='error'>{formErrors.classlevel}</p>
-                <label className='label'>
-                    Class Description
-                    <textarea 
-                    rows="4" 
-                    type="text" 
-                    name="classdescription" 
-                    value={classForm.classdescription}
-                    onChange={onChange}
-                    />
-                </label>
-                <p className='error'>{formErrors.classdescription}</p>
+               
+    
                 </div>
                 <div className="rightform">
                 <label className='label'>
@@ -320,26 +295,6 @@ export default function CreateClass() {
                 </label>
                 <p className='error'>{formErrors.classsize}</p>
                 <label className='label'>
-                    When To Arrive
-                    <input 
-                    type="text" 
-                    name="arrivetime" 
-                    value={classForm.arrivetime}
-                    onChange={onChange}
-                    />
-                </label>
-                <p className='error'>{formErrors.arrivetime}</p>
-                <label className='label'>
-                    What You Need To Know
-                    <input 
-                    type="text" 
-                    name="whattoknow" 
-                    value={classForm.whattoknow}
-                    onChange={onChange}
-                    />
-                </label>
-                <p className='error'>{formErrors.whattoknow}</p>
-                <label className='label'>
                     Class Type
                     <select 
                     onChange={onChange}
@@ -351,18 +306,20 @@ export default function CreateClass() {
                         <option value="weights">Weights</option>
                     </select>
                 </label>
-                <p className='error'>{formErrors.classtype}</p>
                 <label className='label'>
-                    Class Equipment Requirements
-                    <textarea 
-                    rows="4"  
-                    type="text" 
-                    name="classequipment" 
-                    value={classForm.classequipment}
+                    Class Level
+                    <select 
                     onChange={onChange}
-                    />
+                    value={classForm.classlevel}
+                    name='classlevel'
+                    >
+                        <option value="easy">Easy</option>
+                        <option value="medium">Medium</option>
+                        <option value="hard">Hard</option>
+                    </select>
                 </label>
-                <p className='error'>{formErrors.classequipment}</p>
+                <p className='error'>{formErrors.classlevel}</p>
+                <p className='error'>{formErrors.classtype}</p>
                 </div>
                 </div>
                 <div className='checkbox'>
