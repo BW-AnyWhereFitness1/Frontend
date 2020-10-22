@@ -1,19 +1,15 @@
 import React, {useState, useEffect} from 'react'
-import axios from 'axios'
 import * as yup from "yup"
 import schema from '../formValidation/createClassSchema'
 import styled from 'styled-components'
-
+import {useDispatch} from 'react-redux';
+import { userActions } from '../_actions';
 const classInitialvalues = {
     classname: '',
-    classdescription: '',
     classcost:'',
-    classequipment:'',
     address:'',
     classsize:'',
     classlength:'',
-    arrivetime: '',
-    whattoknow:'',
     start:'',
     classtype:'boxing',
     classlevel:'easy',
@@ -155,6 +151,7 @@ const FormContainers = styled.form`
 `
 
 export default function CreateClass() {
+    const dispatch = useDispatch();
 
      const [classForm, setclassForm] = useState(classInitialvalues)
 
@@ -198,20 +195,15 @@ export default function CreateClass() {
 
      const formSubmit = () => {
          const newclass = {
-             classname: classForm.classname.trim(),
-             classdescription: classForm.classdescription.trim(),
-             classcost: classForm.classcost.trim(),
-             classequipment: classForm.classequipment.trim(),
-             address: classForm.address.trim(),
-             classtype: classForm.type,
-             classsize: classForm.classsize.trim(),
-             classlength: classForm.classlength.trim(),
-             classlevel: classForm.classlevel,
-             arrivetime: classForm.arrivetime.trim(),
-             whattoknow: classForm.whattoknow.trim(),
-             start: classForm.start.trim(),
-             days: ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'].filter(day => classForm[day])
+             name: classForm.classname.trim(),
+             type: classForm.classtype,
+             location: classForm.address.trim(),
+             intensity: classForm.classlevel,
+             max_size: classForm.classsize.trim(),
+             duration: classForm.classlength.trim(),
+             date: classForm.start.trim()
          }
+         console.log(newclass)
          sendSignUp(newclass)
      }
 
@@ -228,9 +220,7 @@ export default function CreateClass() {
 
 
      const sendSignUp = newclass => {
-         axios.post('https://reqres.in/api/users', newclass)
-         .then(res => console.log(res.data))
-         .catch(e => console.log(e))
+         dispatch(userActions.createClass(newclass));
          setclassForm(classInitialvalues)
      }
 
@@ -271,7 +261,7 @@ export default function CreateClass() {
                 </label>
                 <p className='error'>{formErrors.classcost}</p>
                 <label className='label'>
-                    Class Time
+                    Class Date
                     <input 
                     type="text" 
                     name="start" 
@@ -280,30 +270,8 @@ export default function CreateClass() {
                     />
                 </label>
                 <p className='error'>{formErrors.classtime}</p>
-                <label className='label'>
-                    Class Level
-                    <select 
-                    onChange={onChange}
-                    value={classForm.classlevel}
-                    name='classlevel'
-                    >
-                        <option value="easy">Easy</option>
-                        <option value="medium">Medium</option>
-                        <option value="hard">Hard</option>
-                    </select>
-                </label>
-                <p className='error'>{formErrors.classlevel}</p>
-                <label className='label'>
-                    Class Description
-                    <textarea 
-                    rows="4" 
-                    type="text" 
-                    name="classdescription" 
-                    value={classForm.classdescription}
-                    onChange={onChange}
-                    />
-                </label>
-                <p className='error'>{formErrors.classdescription}</p>
+               
+    
                 </div>
                 <div className="rightform">
                 <label className='label'>
@@ -327,26 +295,6 @@ export default function CreateClass() {
                 </label>
                 <p className='error'>{formErrors.classsize}</p>
                 <label className='label'>
-                    When To Arrive
-                    <input 
-                    type="text" 
-                    name="arrivetime" 
-                    value={classForm.arrivetime}
-                    onChange={onChange}
-                    />
-                </label>
-                <p className='error'>{formErrors.arrivetime}</p>
-                <label className='label'>
-                    What You Need To Know
-                    <input 
-                    type="text" 
-                    name="whattoknow" 
-                    value={classForm.whattoknow}
-                    onChange={onChange}
-                    />
-                </label>
-                <p className='error'>{formErrors.whattoknow}</p>
-                <label className='label'>
                     Class Type
                     <select 
                     onChange={onChange}
@@ -358,18 +306,20 @@ export default function CreateClass() {
                         <option value="weights">Weights</option>
                     </select>
                 </label>
-                <p className='error'>{formErrors.classtype}</p>
                 <label className='label'>
-                    Class Equipment Requirements
-                    <textarea 
-                    rows="4"  
-                    type="text" 
-                    name="classequipment" 
-                    value={classForm.classequipment}
+                    Class Level
+                    <select 
                     onChange={onChange}
-                    />
+                    value={classForm.classlevel}
+                    name='classlevel'
+                    >
+                        <option value="easy">Easy</option>
+                        <option value="medium">Medium</option>
+                        <option value="hard">Hard</option>
+                    </select>
                 </label>
-                <p className='error'>{formErrors.classequipment}</p>
+                <p className='error'>{formErrors.classlevel}</p>
+                <p className='error'>{formErrors.classtype}</p>
                 </div>
                 </div>
                 <div className='checkbox'>
