@@ -5,17 +5,17 @@ import styled from 'styled-components';
 import {useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { userActions } from '../_actions';
+import {Link} from 'react-router-dom'
 
 
 const FormContainerDiv = styled.div`
   display: flex;
+  height:400px;
+  width:320px;
+  border-radius:2rem;
   flex-direction:column;
-  align-self: flex-end;
-  margin-right: 2rem;
+  justify-content:center;
   font-family: 'Comfortaa', cursive;
-  min-height: 25rem;
-  max-width: 25%;
-  border-radius: 10px;
 /*   height: 75vh; */
   background-color: #ffffff;
   padding: 1rem;
@@ -26,11 +26,11 @@ const FormContainerDiv = styled.div`
   }
   #welcome-text {
     font-weight: 400;
-    font-size: 2rem; 
+    font-size: 3rem; 
   }
   #sub-text {
     font-family: 'MuseoModerno', cursive;
-    font-size: .65rem;
+    font-size: 2.5rem;
   }
   #sub-text {
     font-family: 'MuseoModerno', cursive;
@@ -55,11 +55,13 @@ const FormContainerDiv = styled.div`
   }
   .error {
       color: red;
-      font-size: .25rem;
+      font-size: 1.5rem;
   }
   
   button {
       color: white;
+      padding:1rem 0;
+      margin-bottom:1rem;
   }
 
   .btn {
@@ -109,6 +111,9 @@ const FormContainerDiv = styled.div`
   input:focus {
       border-color: pink;
   }
+  input[placeholder] {
+      font-size:2rem;
+  }
   display: flex;
   flex-direction: column;
   box-shadow: 0 2px 1px rgba(0,0,0,0.09), 
@@ -118,7 +123,25 @@ const FormContainerDiv = styled.div`
               0 32px 16px rgba(0,0,0,0.09);
 `
 
-
+const LoginDiv = styled.div`
+    height:100%;
+    min-height:500px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    .form-bottom {
+        font-size:2rem;
+        .link {
+            text-decoration:none;
+            color:black;
+            font-weight:bold;
+            &:hover {
+                color:pink;
+            }
+        }
+    }
+`
 
 const loginInitialvalues = {
     username: '',
@@ -195,13 +218,13 @@ function Login() {
      }
 
     return (
+        <LoginDiv>
         <FormContainerDiv>
-
-           <div class="form-text-top">
+           <div className="form-text-top">
                 <p id="welcome-text">Welcome</p>
                 <p id="sub-text">Anywhere Fitness</p>
             </div>
-                <div class="input">
+                <div className="input">
                     <form onSubmit={onSubmit}>
                        {formErrors.username.length > 0 ? <p className="error">{formErrors.username}</p> : null}
                         <input 
@@ -223,13 +246,12 @@ function Login() {
                         {disabled === true ? <button className="btn-disabled" disabled={disabled}>Confirm</button> : <button className="btn" disabled={disabled}>Confirm</button>}
                         
                     </form>
-                    <div class="form-bottom">
-                    <span id="no-account">Don't have an account?</span><span id="sign-up">Sign Up</span>
-                    </div>
+                    <span className='form-bottom'>No Account? <Link className='link' to='/signup'>Sign up here</Link></span>
             </div>
            {localStorage.getItem('token') && <Redirect to="/dashboard" />}
 
         </FormContainerDiv>
+        </LoginDiv>
     )
 }
 

@@ -9,13 +9,12 @@ import { Link } from 'react-router-dom';
 // STYLING
 const FormContainerDiv = styled.div`
   display: flex;
+  height:400px;
+  width:320px;
+  border-radius:2rem;
   flex-direction:column;
-  align-self: flex-end;
-  margin-right: 2rem;
-  min-height: 25rem;
+  justify-content:center;
   font-family: 'Comfortaa', cursive;
-  max-width: 25%;
-  border-radius: 10px;
 /*   height: 75vh; */
   background-color: #ffffff;
   padding: 1rem;
@@ -24,13 +23,13 @@ const FormContainerDiv = styled.div`
     flex-direction: column;
     align-items: center;
   }
-  #sign-up-text {
+  #welcome-text {
     font-weight: 400;
-    font-size: 2rem; 
+    font-size: 3rem; 
   }
   #sub-text {
     font-family: 'MuseoModerno', cursive;
-    font-size: .65rem;
+    font-size: 2.5rem;
   }
   #sub-text {
     font-family: 'MuseoModerno', cursive;
@@ -44,24 +43,24 @@ const FormContainerDiv = styled.div`
   .form-bottom {
       display: flex;
       justify-content: center;
-      #have-account {
-          font-size: .25rem;
+      #no-account {
+          font-size: .15rem;
           margin-right: .35rem;
       }
       #sign-up {
-          font-size: .25rem;
-          font-weight: 700;
+          font-size: .15rem;
+          font-weight: 750;
       }
-
   }
   .error {
-      align-items: top;
       color: red;
-      font-size: .25rem;
+      font-size: 1.5rem;
   }
   
   button {
       color: white;
+      padding:1rem 0;
+      margin-bottom:1rem;
   }
 
   .btn {
@@ -100,6 +99,7 @@ const FormContainerDiv = styled.div`
         background-position: right center;
     }
   }
+
   input {
       margin-bottom: .15rem;
       margin-bottom: 2rem;
@@ -107,9 +107,11 @@ const FormContainerDiv = styled.div`
       border-width: 0 0 2px;
       border-color: pink;
   }
-
   input:focus {
       border-color: pink;
+  }
+  input[placeholder] {
+      font-size:2rem;
   }
   display: flex;
   flex-direction: column;
@@ -118,12 +120,26 @@ const FormContainerDiv = styled.div`
               0 8px 4px rgba(0,0,0,0.09), 
               0 16px 8px rgba(0,0,0,0.09),
               0 32px 16px rgba(0,0,0,0.09);
-    form {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+`
 
+const LoginDiv = styled.div`
+    height:100%;
+    min-height:500px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    .form-bottom {
+        font-size:2rem;
+        .link {
+            text-decoration:none;
+            color:black;
+            font-weight:bold;
+            &:hover {
+                color:pink;
+            }
+        }
+    }
 `
 
 // STYLING END
@@ -206,6 +222,7 @@ export default function Signup() {
      }
 
     return (
+        <LoginDiv>
         <FormContainerDiv>
         <div class="form-text-top">
             <p id="welcome-text">Welcome</p>
@@ -251,6 +268,7 @@ export default function Signup() {
                 </form>
                <span>Want to be an instructor? <Link to='/signupInstructor'>Sign up here</Link></span>
         </FormContainerDiv>
+        </LoginDiv>
     )
 }
 
