@@ -26,6 +26,30 @@ const BodyContainer = styled.div`
         background-size:cover;
         width:60%;
     }
+    @media (max-width:1200px) {
+        .text-containter {
+            width:80%;
+        }
+    }
+    @media (max-width:850px) {
+        flex-direction:column;
+        height:100%;
+        .text-containter {
+            min-height: 400px;
+            width:100%;
+            div {
+                padding:0 2rem;
+                margin-top:10rem;
+                h1 {
+                    font-size:5rem;
+                }
+            }
+        }
+        .img-container {
+            min-height: 400px;
+            width:100%;
+        }
+    }
 `
 
 export default function LandingPage() {
@@ -38,7 +62,7 @@ export default function LandingPage() {
                 </div>
             </div>
             <div className="img-container">
-                hi
+                
             </div>
         </BodyContainer>
     )
